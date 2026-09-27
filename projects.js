@@ -36,14 +36,14 @@ window.PORTFOLIO_PROJECTS = [
     category: "Direção de arte / Campanha promocional",
     year: "2026",
     featured: true,
-    cover: "assets/projects/fortune-rabbit/cover.jpg",
+    cover: "assets/projects/fortune-rabbit/03-mockup-celulares.jpg",
     summary: "Direção visual para uma ação de raspa-raspa digital vinculada ao Fortune Rabbit, com landing page mobile, interface da mecânica promocional e mockups de aplicação.",
     tags: ["Direção de arte", "Campanha", "UI promocional", "Social media"],
     media: [
       {
         type: "image",
-        src: "assets/projects/fortune-rabbit/cover.jpg",
-        alt: "Mockup do projeto Raspa-raspa em um smartphone sobre um notebook"
+        src: "assets/projects/fortune-rabbit/03-mockup-celulares.jpg",
+        alt: "Mockup com dois smartphones apresentando a experiência promocional"
       },
       {
         type: "image",
@@ -54,11 +54,6 @@ window.PORTFOLIO_PROJECTS = [
         type: "image",
         src: "assets/projects/fortune-rabbit/02-raspa-interface.jpg",
         alt: "Interface mobile do raspa-raspa com nove áreas de interação"
-      },
-      {
-        type: "image",
-        src: "assets/projects/fortune-rabbit/03-mockup-celulares.jpg",
-        alt: "Mockup com dois smartphones apresentando a experiência promocional"
       }
     ],
     behanceUrl: "https://www.behance.net/gallery/247881483/Raspa-raspa-Promocao-Fortune-Rabbit"
@@ -69,7 +64,7 @@ window.PORTFOLIO_PROJECTS = [
     category: "Motion design / Campanha interativa",
     year: "2026",
     featured: true,
-    cover: "assets/projects/ajude-o-touro/cover.jpg",
+    cover: "assets/projects/ajude-o-touro/poster-vertical.jpg",
     summary: "Peça vertical em linguagem de game retrô e pixel art para uma ação de Fortune Ox na BingoPlus, combinando chamada promocional, personagem animado e sequência de gameplay.",
     tags: ["Motion design", "Pixel art", "Gamificação", "Campanha digital"],
     media: [
