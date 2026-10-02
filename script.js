@@ -259,11 +259,14 @@ const previousProject = document.getElementById('previousProject');
 const nextProject = document.getElementById('nextProject');
 let currentProjectIndex = 0;
 
-function getYouTubeEmbedUrl(url) {
+function getYouTubeId(url) {
   if (!url) return null;
-  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|shorts\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+  if (url.includes('/shorts/')) {
+    return url.split('/shorts/')[1].split('?')[0].split('/')[0];
+  }
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
   const match = url.match(regExp);
-  return (match && match[2].length === 11) ? `https://www.youtube.com/embed/${match[2]}` : null;
+  return (match && match[2].length === 11) ? match[2] : null;
 }
 
 function openProject(index) {
@@ -280,14 +283,15 @@ function openProject(index) {
   
   const gallery = document.getElementById('dialogGallery');
   gallery.innerHTML = (project.media || []).map(item => {
-    if (item.type === 'video') {
-      const ytEmbed = getYouTubeEmbedUrl(item.src);
-      if (ytEmbed) {
+    const ytId = getYouTubeId(item.src);
+    
+    if (ytId || item.type === 'video') {
+      if (ytId) {
         return `
-          <div class="dialog-media dialog-video" style="display:flex; flex-direction:column; align-items:center; margin-bottom:32px;">
-            <h4 style="margin: 0 0 12px; font-size:14px; color:var(--lime); text-transform:uppercase; letter-spacing:0.08em; text-align:center;">${item.title || ''}</h4>
+          <div class="dialog-media dialog-video" style="display:flex; flex-direction:column; align-items:center; margin-bottom:32px; width:100%;">
+            ${item.title ? `<h4 style="margin: 0 0 12px; font-size:14px; color:var(--lime); text-transform:uppercase; letter-spacing:0.08em; text-align:center;">${item.title}</h4>` : ''}
             <div style="position:relative; width:100%; max-width:340px; aspect-ratio:9/16; border-radius:16px; overflow:hidden; border:1px solid var(--line); background:#000;">
-              <iframe src="${ytEmbed}" title="${item.title || 'Vídeo'}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="width:100%; height:100%;"></iframe>
+              <iframe src="https://www.youtube.com/embed/${ytId}" title="${item.title || 'Vídeo'}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="width:100%; height:100%;"></iframe>
             </div>
           </div>
         `;
@@ -316,7 +320,7 @@ function openProject(index) {
 function closeProject() {
   if (!dialog || !dialog.open) return;
   const gallery = document.getElementById('dialogGallery');
-  if (gallery) gallery.innerHTML = ''; // Limpa os iframes para interromper o áudio ao fechar
+  if (gallery) gallery.innerHTML = '';
   dialog.close();
   document.body.classList.remove('dialog-open');
 }
