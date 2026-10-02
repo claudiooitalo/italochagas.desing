@@ -229,21 +229,6 @@ const previousProject = document.getElementById('previousProject');
 const nextProject = document.getElementById('nextProject');
 let currentProjectIndex = 0;
 
-// Extrai o ID do vídeo do YouTube independentemente do formato do link
-function extractYouTubeId(url) {
-  if (!url) return null;
-  if (url.includes('/shorts/')) {
-    return url.split('/shorts/')[1].split('?')[0].split('/')[0];
-  }
-  if (url.includes('v=')) {
-    return url.split('v=')[1].split('&')[0];
-  }
-  if (url.includes('youtu.be/')) {
-    return url.split('youtu.be/')[1].split('?')[0];
-  }
-  return null;
-}
-
 function openProject(index) {
   const projects = getProjectsList();
   if (!dialog || !projects.length) return;
@@ -257,36 +242,47 @@ function openProject(index) {
   document.getElementById('dialogCounter').textContent = `${currentProjectIndex + 1} / ${projects.length}`;
   
   const gallery = document.getElementById('dialogGallery');
+  
   gallery.innerHTML = (project.media || []).map(item => {
-    const ytId = extractYouTubeId(item.src);
-    
-    // Se for um link do YouTube
-    if (ytId || (item.src && (item.src.includes('youtube') || item.src.includes('youtu.be')))) {
-      const finalYtId = ytId || extractYouTubeId(item.src);
+    const link = item.src || '';
+    // Verifica se existe "youtube" ou "youtu.be" no link
+    const isYouTube = link.includes('youtube.com') || link.includes('youtu.be');
+
+    // 1. SE FOR YOUTUBE (Garante o iframe)
+    if (isYouTube) {
+      let ytId = '';
+      if (link.includes('/shorts/')) {
+        ytId = link.split('/shorts/')[1].split('?')[0].replace('/', '');
+      } else if (link.includes('v=')) {
+        ytId = link.split('v=')[1].split('&')[0];
+      } else if (link.includes('youtu.be/')) {
+        ytId = link.split('youtu.be/')[1].split('?')[0];
+      }
+
       return `
         <div class="dialog-media dialog-video" style="display:flex; flex-direction:column; align-items:center; margin-bottom:32px; width:100%;">
           ${item.title ? `<h4 style="margin: 0 0 12px; font-size:14px; color:var(--lime); text-transform:uppercase; letter-spacing:0.08em; text-align:center;">${item.title}</h4>` : ''}
           <div style="position:relative; width:100%; max-width:340px; aspect-ratio:9/16; border-radius:16px; overflow:hidden; border:1px solid var(--line); background:#000;">
-            <iframe src="https://www.youtube.com/embed/${finalYtId}" title="${item.title || 'Vídeo'}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="width:100%; height:100%; border:0;"></iframe>
+            <iframe src="https://www.youtube.com/embed/${ytId}" title="${item.title || 'YouTube Video'}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width:100%; height:100%; border:0;"></iframe>
           </div>
         </div>
       `;
     }
 
-    // Se for um ficheiro de vídeo MP4 direto
-    if (item.type === 'video' || (item.src && item.src.endsWith('.mp4'))) {
+    // 2. SE FOR UM FICHEIRO DE VÍDEO NATIVO (.mp4)
+    if (item.type === 'video' || link.endsWith('.mp4')) {
       return `
         <div class="dialog-media dialog-video" style="margin-bottom:24px;">
           <video controls playsinline preload="metadata" style="width:100%; max-height: 70vh; border-radius:12px;">
-            <source src="${item.src}" type="video/mp4">
+            <source src="${link}" type="video/mp4">
             Seu navegador não suporta vídeo.
           </video>
         </div>
       `;
     }
 
-    // Caso contrário, renderiza como Imagem
-    return `<div class="dialog-image" style="margin-bottom:16px;"><img src="${item.src}" alt="${item.alt || 'Imagem do projeto'}" loading="lazy"></div>`;
+    // 3. SE FOR IMAGEM
+    return `<div class="dialog-image" style="margin-bottom:16px;"><img src="${link}" alt="${item.alt || 'Imagem do projeto'}" loading="lazy"></div>`;
   }).join('');
 
   if (!dialog.open) {
@@ -301,7 +297,7 @@ function openProject(index) {
 function closeProject() {
   if (!dialog || !dialog.open) return;
   const gallery = document.getElementById('dialogGallery');
-  if (gallery) gallery.innerHTML = ''; // Limpa o modal para parar o som do vídeo ao fechar
+  if (gallery) gallery.innerHTML = '';
   dialog.close();
   document.body.classList.remove('dialog-open');
 }
