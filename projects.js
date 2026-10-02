@@ -6,7 +6,7 @@ window.PORTFOLIO_PROJECTS = [
     categoryName: "🌐 Landing Pages",
     title: "Landing Pages",
     summary: "Layout de alta conversão focado na apresentação de marcas e aplicações institucionais.",
-    cover: "https://lh3.googleusercontent.com/d/1KiNsjyPv1b5TTXIBde-rUuLRXmQRSAJU",
+    cover: "https://lh3.googleusercontent.com/d/14jchCVnJHwhyTWv8A9TZXi_b5k7fYdCV",
     media: [
       { type: "image", src: "https://lh3.googleusercontent.com/d/14jchCVnJHwhyTWv8A9TZXi_b5k7fYdCV", alt: "Marcas e Detalhes" },
       { type: "image", src: "https://lh3.googleusercontent.com/d/1KiNsjyPv1b5TTXIBde-rUuLRXmQRSAJU", alt: "LP MEP" },
@@ -60,7 +60,7 @@ window.PORTFOLIO_PROJECTS = [
     categoryName: "📱 Social Media",
     title: "Social Media",
     summary: "Peças publicitárias de alto impacto no formato 1080x1350 para engajamento e conversão.",
-    cover: "https://lh3.googleusercontent.com/d/1sUheeXH-KsH6T54tE9B6bZVZle9x7IXF",
+    cover: "https://lh3.googleusercontent.com/d/1kMmVyGyCp-FDQpIf5CiNZEpkjjtRkIs4",
     media: [
       { type: "image", src: "https://lh3.googleusercontent.com/d/1sUheeXH-KsH6T54tE9B6bZVZle9x7IXF", alt: "Play na Diversão" },
       { type: "image", src: "https://lh3.googleusercontent.com/d/1VkTdkpAbQhGvTRrhWUZJ9e0odU29PBus", alt: "Criativo Social Media" },
