@@ -1,123 +1,64 @@
-/*
-  ================================================================
-  PORTFÓLIO — BANCO DE PROJETOS
-  ================================================================
-
-  Para adicionar um novo trabalho no futuro:
-
-  1. Crie uma pasta em: assets/projects/slug-do-projeto/
-  2. Coloque a capa e todas as mídias do case nessa pasta.
-  3. Copie um bloco de projeto abaixo e altere os dados.
-  4. Salve o arquivo. O card e o modal são criados automaticamente.
-
-  Campos principais:
-  - id: identificador único, sem espaços
-  - title: título do projeto
-  - category: categoria curta
-  - year: ano (opcional)
-  - featured: true = aparece na área de destaques
-  - cover: imagem usada no card da home
-  - summary: descrição curta do case
-  - tags: lista de especialidades/ferramentas
-  - media: galeria completa, aceitando imagens e vídeos
-  - behanceUrl: link original do projeto (opcional)
-
-  Mídia de imagem:
-  { type: "image", src: "...", alt: "Descrição" }
-
-  Mídia de vídeo:
-  { type: "video", src: "...", poster: "...", title: "Descrição" }
-*/
-
 window.PORTFOLIO_PROJECTS = [
+  // 1. LANDING PAGES
   {
-    id: "fortune-rabbit",
-    title: "Raspa-raspa — Promoção Fortune Rabbit",
-    category: "Direção de arte / Campanha promocional",
-    year: "2026",
-    featured: true,
-    cover: "assets/projects/fortune-rabbit/03-mockup-celulares.jpg",
-    summary: "Direção visual para uma ação de raspa-raspa digital vinculada ao Fortune Rabbit, com landing page mobile, interface da mecânica promocional e mockups de aplicação.",
-    tags: ["Direção de arte", "Campanha", "UI promocional", "Social media"],
+    id: "lp-mep",
+    category: "landing-pages",
+    categoryName: "🌐 Landing Pages",
+    title: "Landing Page MEP & Aplicações",
+    summary: "Layout de alta conversão focado na apresentação de marcas e aplicações institucionais.",
+    cover: "https://lh3.googleusercontent.com/d/1KiNsjyPv1b5TTXIBde-rUuLRXmQRSAJU",
     media: [
-      {
-        type: "image",
-        src: "assets/projects/fortune-rabbit/03-mockup-celulares.jpg",
-        alt: "Mockup com dois smartphones apresentando a experiência promocional"
-      },
-      {
-        type: "image",
-        src: "assets/projects/fortune-rabbit/01-landing-mobile.jpg",
-        alt: "Landing page mobile da campanha Raspa-raspa de Outro Nível"
-      },
-      {
-        type: "image",
-        src: "assets/projects/fortune-rabbit/02-raspa-interface.jpg",
-        alt: "Interface mobile do raspa-raspa com nove áreas de interação"
-      }
-    ],
-    behanceUrl: "https://www.behance.net/gallery/247881483/Raspa-raspa-Promocao-Fortune-Rabbit"
+      { type: "image", src: "https://lh3.googleusercontent.com/d/1KiNsjyPv1b5TTXIBde-rUuLRXmQRSAJU", alt: "LP MEP" },
+      { type: "image", src: "https://lh3.googleusercontent.com/d/14jchCVnJHwhyTWv8A9TZXi_b5k7fYdCV", alt: "Marcas e Detalhes" },
+      { type: "image", src: "https://lh3.googleusercontent.com/d/1d2F6dzVo8VydTElkEuo84SdgU7R0q8eq", alt: "Aplicações de Marca" }
+    ]
   },
+
+  // 2. MARCAS / BRANDING
   {
-    id: "ajude-o-touro",
-    title: "AJUDE O TOURO",
-    category: "Motion design / Campanha interativa",
-    year: "2026",
-    featured: true,
-    cover: "assets/projects/ajude-o-touro/poster-vertical.jpg",
-    summary: "Peça vertical em linguagem de game retrô e pixel art para uma ação de Fortune Ox na BingoPlus, combinando chamada promocional, personagem animado e sequência de gameplay.",
-    tags: ["Motion design", "Pixel art", "Gamificação", "Campanha digital"],
+    id: "branding-salgados-tasty",
+    category: "branding",
+    categoryName: "🎨 Marcas / Branding",
+    title: "Identidade Visual — Salgados Tasty",
+    summary: "Manual de identidade visual completo, guias de aplicação e apresentação estratégica de marca.",
+    cover: "https://lh3.googleusercontent.com/d/1TcW23wqmdBjXvCNSYujjWlwUgH3SMjBF",
     media: [
-      {
-        type: "video",
-        src: "assets/projects/ajude-o-touro/ajude-o-touro.mp4",
-        poster: "assets/projects/ajude-o-touro/poster-vertical.jpg",
-        title: "AJUDE O TOURO — vídeo da campanha"
-      }
-    ],
-    behanceUrl: ""
+      { type: "image", src: "https://lh3.googleusercontent.com/d/1TcW23wqmdBjXvCNSYujjWlwUgH3SMjBF", alt: "Apresentação Identidade Visual" },
+      { type: "image", src: "https://lh3.googleusercontent.com/d/1P0H10JZ-fGxCNgDQxItll-gccwYBizrb", alt: "Manual Salgados Tasty - 06" },
+      { type: "image", src: "https://lh3.googleusercontent.com/d/1VC62TCGxnzHZX_8p3kQUqaYoL42DhcGj", alt: "Manual Salgados Tasty - 07" },
+      { type: "image", src: "https://lh3.googleusercontent.com/d/1gSWmPuxn3UMIuXhb1gPZvvZT4fcOgF1G", alt: "Manual Salgados Tasty - 08" },
+      { type: "image", src: "https://lh3.googleusercontent.com/d/1M7Oz4B16UMCkbDzisoFvp9Mz36hKumws", alt: "Manual Salgados Tasty - 15" }
+    ]
   },
+
+  // 3. MOTION DESIGN
   {
-    id: "salgados-tasty-2024",
-    title: "Salgados Tasty — 2024",
-    category: "Branding / Identidade visual",
-    year: "2024",
-    featured: true,
-    cover: "assets/projects/salgados-tasty-2024/cover.jpg",
-    summary: "Construção de identidade visual para a Salgados Tasty, reunindo sistema de marca, mascote, versões de logo, uniformes, embalagens e direção visual para comunicação do produto.",
-    tags: ["Branding", "Identidade visual", "Mascote", "Embalagem"],
+    id: "motion-campaigns",
+    category: "motion",
+    categoryName: "🎬 Motion Design",
+    title: "Animações & Criativos Publicitários",
+    summary: "Animações dinâmicas em formato 9:16 e vídeos curtos focados em alta retenção para redes e campanhas.",
+    cover: "https://lh3.googleusercontent.com/d/1KiNsjyPv1b5TTXIBde-rUuLRXmQRSAJU",
     media: [
-      {
-        type: "image",
-        src: "assets/projects/salgados-tasty-2024/cover.jpg",
-        alt: "Fotografia de salgados com aplicação da identidade Salgados Tasty"
-      },
-      {
-        type: "image",
-        src: "assets/projects/salgados-tasty-2024/01-logo.jpg",
-        alt: "Logo principal Salgados Tasty com mascote"
-      },
-      {
-        type: "image",
-        src: "assets/projects/salgados-tasty-2024/02-versoes-logo.jpg",
-        alt: "Versões principais, secundárias e negativas da identidade Salgados Tasty"
-      },
-      {
-        type: "image",
-        src: "assets/projects/salgados-tasty-2024/03-uniformes.jpg",
-        alt: "Aplicações da identidade Salgados Tasty em uniformes"
-      },
-      {
-        type: "image",
-        src: "assets/projects/salgados-tasty-2024/04-caixa-verde.jpg",
-        alt: "Mockup de embalagem verde da Salgados Tasty"
-      },
-      {
-        type: "image",
-        src: "assets/projects/salgados-tasty-2024/05-caixa-vermelha.jpg",
-        alt: "Mockup de embalagem vermelha da Salgados Tasty"
-      }
-    ],
-    behanceUrl: "https://www.behance.net/gallery/245218335/Salgados-Tasty-2024"
+      { type: "video", src: "https://drive.google.com/uc?export=download&id=1B4oqJKXHj2CeE6rVlnGshmX-p9nGGqnv", title: "Ajude o Tigre" },
+      { type: "video", src: "https://drive.google.com/uc?export=download&id=1jIDTr_5MTHHlRnYz4GQd2soKN9jKsYMc", title: "TikTok Zombie School" },
+      { type: "video", src: "https://drive.google.com/uc?export=download&id=1nFENPi94oTguo4k_OJ9YmlPmcTVv5CbQ", title: "Le Bandit" }
+    ]
+  },
+
+  // 4. SOCIAL MEDIA
+  {
+    id: "social-media-posts",
+    category: "social-media",
+    categoryName: "📱 Social Media",
+    title: "Design de Criativos & Redes Sociais",
+    summary: "Peças publicitárias de alto impacto no formato 1080x1350 para engajamento e conversão.",
+    cover: "https://lh3.googleusercontent.com/d/1sUheeXH-KsH6T54tE9B6bZVZle9x7IXF",
+    media: [
+      { type: "image", src: "https://lh3.googleusercontent.com/d/1sUheeXH-KsH6T54tE9B6bZVZle9x7IXF", alt: "Play na Diversão" },
+      { type: "image", src: "https://lh3.googleusercontent.com/d/1VkTdkpAbQhGvTRrhWUZJ9e0odU29PBus", alt: "Criativo Social Media" },
+      { type: "image", src: "https://lh3.googleusercontent.com/d/1Gjt-Kv08numSvqC0NwHgebDx6GY0VmmU", alt: "Clássicos" },
+      { type: "image", src: "https://lh3.googleusercontent.com/d/1kMmVyGyCp-FDQpIf5CiNZEpkjjtRkIs4", alt: "Crítica" }
+    ]
   }
 ];
