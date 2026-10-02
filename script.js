@@ -1,4 +1,3 @@
-// DICIONÁRIO DE TRADUÇÃO (PT / EN)
 const translations = {
   pt: {
     skipLink: "Pular para o conteúdo",
@@ -165,14 +164,42 @@ function updateLanguage(lang) {
     }
   });
 
-  document.getElementById('langPT').classList.toggle('active', lang === 'pt');
-  document.getElementById('langEN').classList.toggle('active', lang === 'en');
+  const btnPT = document.getElementById('langPT');
+  const btnEN = document.getElementById('langEN');
+  if (btnPT) btnPT.classList.toggle('active', lang === 'pt');
+  if (btnEN) btnEN.classList.toggle('active', lang === 'en');
 }
 
-document.getElementById('langPT').addEventListener('click', () => updateLanguage('pt'));
-document.getElementById('langEN').addEventListener('click', () => updateLanguage('en'));
+const langPT = document.getElementById('langPT');
+const langEN = document.getElementById('langEN');
+if (langPT) langPT.addEventListener('click', () => updateLanguage('pt'));
+if (langEN) langEN.addEventListener('click', () => updateLanguage('en'));
 
-// FILTRO DE CATEGORIAS DO PORTFÓLIO
+const header = document.querySelector('.site-header');
+const menuToggle = document.querySelector('.menu-toggle');
+const nav = document.querySelector('.main-nav');
+
+if (header) {
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 18);
+  }, { passive: true });
+}
+
+if (menuToggle && nav) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+    menuToggle.setAttribute('aria-expanded', String(!expanded));
+    nav.classList.toggle('open', !expanded);
+  });
+
+  nav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menuToggle.setAttribute('aria-expanded', 'false');
+      nav.classList.remove('open');
+    });
+  });
+}
+
 const projects = Array.isArray(window.PORTFOLIO_PROJECTS) ? window.PORTFOLIO_PROJECTS : [];
 const projectsGrid = document.getElementById('projectsGrid');
 const tabButtons = document.querySelectorAll('.tab-btn');
@@ -223,69 +250,121 @@ tabButtons.forEach(btn => {
   });
 });
 
-// DIALOG / MODAL
 const dialog = document.getElementById('projectDialog');
-const dialogClose = dialog.querySelector('.dialog-close');
+const dialogClose = dialog ? dialog.querySelector('.dialog-close') : null;
+const previousProject = document.getElementById('previousProject');
+const nextProject = document.getElementById('nextProject');
 let currentProjectIndex = 0;
 
+function pauseMedia() {
+  if (!dialog) return;
+  dialog.querySelectorAll('video, audio').forEach(media => media.pause());
+}
+
 function openProject(index) {
-  currentProjectIndex = index;
-  const project = projects[index];
-  if (!project) return;
+  if (!dialog || !projects.length) return;
+  pauseMedia();
+
+  currentProjectIndex = (index + projects.length) % projects.length;
+  const project = projects[currentProjectIndex];
 
   document.getElementById('dialogTitle').textContent = project.title;
   document.getElementById('dialogCategory').textContent = project.categoryName || project.category;
   document.getElementById('dialogSummary').textContent = project.summary || '';
-  document.getElementById('dialogCounter').textContent = `${index + 1} / ${projects.length}`;
+  document.getElementById('dialogCounter').textContent = `${currentProjectIndex + 1} / ${projects.length}`;
   
   const gallery = document.getElementById('dialogGallery');
-  gallery.innerHTML = (project.images || []).map(src => `<div class="dialog-image"><img src="${src}" alt="Imagem do projeto"></div>`).join('');
+  gallery.innerHTML = (project.media || []).map(item => {
+    if (item.type === 'video') {
+      return `
+        <div class="dialog-media dialog-video">
+          <video controls playsinline preload="metadata" style="width:100%; max-height: 70vh; border-radius:12px;">
+            <source src="${item.src}" type="video/mp4">
+            Seu navegador não suporta vídeo.
+          </video>
+        </div>
+      `;
+    }
+    return `<div class="dialog-image"><img src="${item.src}" alt="${item.alt || 'Imagem do projeto'}" loading="lazy"></div>`;
+  }).join('');
 
-  dialog.showModal();
-  document.body.classList.add('dialog-open');
+  if (!dialog.open) {
+    dialog.showModal();
+    document.body.classList.add('dialog-open');
+  }
+
+  const shell = dialog.querySelector('.dialog-shell');
+  if (shell) shell.scrollTop = 0;
 }
 
-dialogClose.addEventListener('click', () => {
+function closeProject() {
+  if (!dialog || !dialog.open) return;
+  pauseMedia();
   dialog.close();
   document.body.classList.remove('dialog-open');
+}
+
+if (dialogClose) dialogClose.addEventListener('click', closeProject);
+if (previousProject) previousProject.addEventListener('click', () => openProject(currentProjectIndex - 1));
+if (nextProject) nextProject.addEventListener('click', () => openProject(currentProjectIndex + 1));
+
+if (dialog) {
+  dialog.addEventListener('click', event => {
+    if (event.target === dialog) closeProject();
+  });
+  dialog.addEventListener('cancel', event => {
+    event.preventDefault();
+    closeProject();
+  });
+}
+
+document.addEventListener('keydown', event => {
+  if (!dialog || !dialog.open) return;
+  if (event.key === 'ArrowLeft') openProject(currentProjectIndex - 1);
+  if (event.key === 'ArrowRight') openProject(currentProjectIndex + 1);
 });
 
-// FORMULÁRIO DE CONTATO VIA FORMSUBMIT
 const contactForm = document.getElementById('contactForm');
 const formStatus = document.getElementById('formStatus');
 
-contactForm.addEventListener('submit', async event => {
-  event.preventDefault();
-  formStatus.textContent = 'Enviando mensagem...';
+if (contactForm) {
+  contactForm.addEventListener('submit', async event => {
+    event.preventDefault();
+    if (formStatus) formStatus.textContent = 'Enviando mensagem...';
 
-  const formData = new FormData(contactForm);
-  formData.set('_subject', 'Novo orçamento via site — Ítalo Chagas');
+    const formData = new FormData(contactForm);
+    formData.set('_subject', 'Novo orçamento via site — Ítalo Chagas');
 
-  try {
-    const response = await fetch('https://formsubmit.co/ajax/italochagas.design@gmail.com', {
-      method: 'POST',
-      body: formData
-    });
-    if (response.ok) {
-      formStatus.textContent = 'Mensagem enviada com sucesso! Entrarei em contato em breve.';
-      contactForm.reset();
-    } else {
-      throw new Error();
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/italochagas.design@gmail.com', {
+        method: 'POST',
+        body: formData
+      });
+      if (response.ok) {
+        if (formStatus) formStatus.textContent = 'Mensagem enviada com sucesso! Entrarei em contato em breve.';
+        contactForm.reset();
+      } else {
+        throw new Error();
+      }
+    } catch (err) {
+      if (formStatus) formStatus.textContent = 'Erro ao enviar. Por favor, envie diretamente pelo WhatsApp!';
     }
-  } catch (err) {
-    formStatus.textContent = 'Erro ao enviar. Por favor, envie diretamente pelo WhatsApp!';
-  }
-});
+  });
+}
 
-// REVEAL OBSERVER
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if (e.isIntersecting) e.target.classList.add('visible');
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
   });
 }, { threshold: 0.1 });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-document.getElementById('currentYear').textContent = new Date().getFullYear();
+const currentYearEl = document.getElementById('currentYear');
+if (currentYearEl) currentYearEl.textContent = new Date().getFullYear();
+
 updateLanguage(currentLang);
 renderProjects();
