@@ -40,9 +40,10 @@ window.PORTFOLIO_PROJECTS = [
     summary: "Animações dinâmicas em formato 9:16 e vídeos curtos focados em alta retenção para redes e campanhas.",
     cover: "https://lh3.googleusercontent.com/d/1KiNsjyPv1b5TTXIBde-rUuLRXmQRSAJU",
     media: [
-      { type: "video", src: "https://drive.google.com/uc?export=download&id=1B4oqJKXHj2CeE6rVlnGshmX-p9nGGqnv", title: "Ajude o Tigre" },
-      { type: "video", src: "https://drive.google.com/uc?export=download&id=1jIDTr_5MTHHlRnYz4GQd2soKN9jKsYMc", title: "TikTok Zombie School" },
-      { type: "video", src: "https://drive.google.com/uc?export=download&id=1nFENPi94oTguo4k_OJ9YmlPmcTVv5CbQ", title: "Le Bandit" }
+      { type: "video", src: "https://youtube.com/shorts/fOtrrTIJ6Y0?feature=share", title: "SOCIAL MEDIA - AJUDE O TOURO" },
+      { type: "video", src: "https://youtube.com/shorts/UZ9ABkAuZ-Y?feature=share", title: "MOTION - SPORT RECIFE COPA DO BRASIL" },
+      { type: "video", src: "https://youtube.com/shorts/OS1GCj0EMnI?feature=share", title: "VÍDEO PARA AQUISIÇÃO - LE BANDIT" }
+      { type: "video", src: "https://youtube.com/shorts/ad4fp6ljp5c?feature=share", title: "MOTION SHOW DE ANIVERSÁRIO" }
     ]
   },
 
