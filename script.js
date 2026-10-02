@@ -1,248 +1,291 @@
-const projects = Array.isArray(window.PORTFOLIO_PROJECTS) ? window.PORTFOLIO_PROJECTS : [];
-const featuredProjects = projects.filter(project => project.featured !== false);
+// DICIONÁRIO DE TRADUÇÃO (PT / EN)
+const translations = {
+  pt: {
+    skipLink: "Pular para o conteúdo",
+    navHome: "Início",
+    navPortfolio: "Portfólio",
+    navAbout: "Sobre",
+    navServices: "Serviços",
+    navProcess: "Processo",
+    navContact: "Contato",
+    headerCta: "Quero um orçamento",
+    heroEyebrow: "Designer Sênior • Direção de Arte",
+    heroTitle: "Design estratégico que transforma atenção em faturamento.",
+    heroLead: "Você não paga apenas por uma arte bonita, paga pela atenção e pelo resultado que ela gera no seu cliente. Landing Pages, Branding, Motion e Social Media construídos com direção visual de alto nível.",
+    heroCtaWhatsapp: "Falar no WhatsApp ↗",
+    heroCtaPortfolio: "Ver projetos",
+    metaLanding: "Landing Pages",
+    metaBranding: "Marcas / Branding",
+    metaMotion: "Motion Design",
+    metaSocial: "Social Media",
+    tagEstrategia: "Estratégia + Conversão",
+    tagExperiencia: "6+ anos de experiência",
+    portfolioEyebrow: "Soluções Visuais",
+    portfolioTitle: "Portfólio Selecionado",
+    portfolioDesc: "Explore os trabalhos divididos por especialidade. Clique em qualquer projeto para abrir a apresentação completa em alta resolução.",
+    catAll: "Todos",
+    catLanding: "🌐 Landing Pages",
+    catBranding: "🎨 Marcas / Branding",
+    catMotion: "🎬 Motion Design",
+    catSocial: "📱 Social Media",
+    brandsEyebrow: "Trajetória",
+    brandsTitle: "Marcas e Projetos de Impacto",
+    aboutEyebrow: "Sobre Ítalo Chagas",
+    aboutTitle: "Soluções visuais que unem estética apurada, psicologia e foco em resultados.",
+    aboutP1: "Com mais de 6 anos de experiência e pós-graduação em Direção de Arte, construí minha trajetória ajudando empresas e marcas a se posicionarem com autoridade no mercado digital.",
+    aboutP2: "Seja criando uma Landing Page de alta conversão, desenvolvendo uma Identidade Visual marcante, animando peças em Motion Design ou estruturando uma linha editorial para Social Media, meu objetivo é claro: transformar visual em faturamento.",
+    aboutStamp: "Designer Sênior • Diretor de Arte",
+    downloadCV: "Baixar Currículo (PDF)",
+    aboutCtaWhatsapp: "Falar comigo no Whats ↗",
+    servicesEyebrow: "Especialidades",
+    servicesTitle: "Serviços Prestados",
+    servicesDesc: "O que apresento no portfólio é exatamente o que entrego com excelência técnica e estratégica para o seu negócio.",
+    serv1Title: "Landing Pages de Alta Conversão",
+    serv1Desc: "Design e estrutura focados em capturar atenção, transmitir confiança imediata e guiar o cliente até a ação de compra ou lead.",
+    serv2Title: "Marcas & Identidade Visual",
+    serv2Desc: "Construção completa de marcas memoráveis, com conceito sólido, guias visuais e aplicação prática para destacar do concorrente.",
+    serv3Title: "Motion Design & Vídeos",
+    serv3Desc: "Animações e edições dinâmicas para anúncios, vinhetas e conteúdos visuais de alto engajamento e retenção nas redes.",
+    serv4Title: "Design para Social Media",
+    serv4Desc: "Padrão visual estratégico, carrosséis de alto valor e criativos publicitários projetados para converter visualizações em clientes.",
+    processEyebrow: "Metodologia",
+    processTitle: "Como Trabalhamos",
+    processDesc: "Um fluxo de trabalho ágil, transparente e orientado a prazos rígidos.",
+    step1Title: "Briefing Estratégico",
+    step1Desc: "Entendimento a fundo sobre o seu modelo de negócio, público-alvo, objetivos e concorrentes.",
+    step2Title: "Proposta & Alinhamento",
+    step2Desc: "Definição clara do escopo, entregáveis, cronograma e investimento sem surpresas.",
+    step3Title: "Criação & Direção de Arte",
+    step3Desc: "Desenvolvimento do projeto com foco em estética avançada, usabilidade e conversão.",
+    step4Title: "Aprovação & Entrega",
+    step4Desc: "Refinamento, validação final e envio dos arquivos organizados nos formatos prontos para uso.",
+    contactEyebrow: "Vamos Conversar?",
+    contactTitle: "Pronto para elevar o nível visual da sua marca?",
+    contactDesc: "Entre em contato diretamente pelo WhatsApp para um atendimento rápido ou envie uma mensagem com os detalhes do seu projeto.",
+    contactWaBtn: "💬 Iniciar conversa no WhatsApp (81 98688-8529)",
+    formName: "Seu nome",
+    formEmail: "Seu e-mail",
+    formMessage: "Conte um pouco sobre o seu projeto",
+    formSubmit: "Enviar mensagem",
+    footerRole: "Designer Sênior & Diretor de Arte",
+    waTooltip: "Falar com Ítalo",
+    prevProject: "← Projeto anterior",
+    nextProject: "Próximo projeto →",
+    dialogFooterTitle: "Gostou deste estilo?",
+    dialogFooterDesc: "Podemos criar um projeto exclusivo e com este mesmo nível visual para a sua marca.",
+    dialogFooterBtn: "Orçamento no WhatsApp"
+  },
+  en: {
+    skipLink: "Skip to content",
+    navHome: "Home",
+    navPortfolio: "Portfolio",
+    navAbout: "About",
+    navServices: "Services",
+    navProcess: "Process",
+    navContact: "Contact",
+    headerCta: "Get a quote",
+    heroEyebrow: "Senior Designer • Art Director",
+    heroTitle: "Strategic design that turns attention into revenue.",
+    heroLead: "You don't just pay for pretty artwork; you pay for the attention and business results it drives. High-converting Landing Pages, Branding, Motion, and Social Media with top-tier art direction.",
+    heroCtaWhatsapp: "Chat on WhatsApp ↗",
+    heroCtaPortfolio: "View projects",
+    metaLanding: "Landing Pages",
+    metaBranding: "Branding / Identity",
+    metaMotion: "Motion Design",
+    metaSocial: "Social Media",
+    tagEstrategia: "Strategy + Conversion",
+    tagExperiencia: "6+ years experience",
+    portfolioEyebrow: "Visual Solutions",
+    portfolioTitle: "Selected Portfolio",
+    portfolioDesc: "Explore work segmented by specialty. Click any project to open the full high-resolution case study.",
+    catAll: "All",
+    catLanding: "🌐 Landing Pages",
+    catBranding: "🎨 Branding / Identity",
+    catMotion: "🎬 Motion Design",
+    catSocial: "📱 Social Media",
+    brandsEyebrow: "Track Record",
+    brandsTitle: "Impactful Brands & Projects",
+    aboutEyebrow: "About Ítalo Chagas",
+    aboutTitle: "Visual solutions blending high aesthetics, psychology, and conversion focus.",
+    aboutP1: "With over 6 years of experience and a postgraduate degree in Art Direction, I build visual solutions that establish market authority for brands and businesses.",
+    aboutP2: "Whether crafting high-converting landing pages, building memorable brand identities, animating motion graphics, or shaping social media systems, my goal is simple: turn design into profit.",
+    aboutStamp: "Senior Designer • Art Director",
+    downloadCV: "Download Resume (PDF)",
+    aboutCtaWhatsapp: "Chat on WhatsApp ↗",
+    servicesEyebrow: "Specialties",
+    servicesTitle: "Services Provided",
+    servicesDesc: "What I show in my portfolio is precisely what I deliver with technical and strategic excellence for your business.",
+    serv1Title: "High-Converting Landing Pages",
+    serv1Desc: "Layout and UX designed to capture attention, build trust, and guide visitors straight to purchase or lead capture.",
+    serv2Title: "Branding & Visual Identity",
+    serv2Desc: "Complete brand systems with strong concept, visual guidelines, and practical execution to stand out from competitors.",
+    serv3Title: "Motion Design & Video",
+    serv3Desc: "Dynamic animations and video edits for ads, intros, and social content built for maximum retention.",
+    serv4Title: "Social Media Design",
+    serv4Desc: "Strategic visual direction, high-value carousels, and ad creatives engineered to turn views into active clients.",
+    processEyebrow: "Methodology",
+    processTitle: "How We Work",
+    processDesc: "An agile, transparent workflow focused on crisp execution and tight deadlines.",
+    step1Title: "Strategic Discovery",
+    step1Desc: "Deep dive into your business model, target audience, key goals, and competition.",
+    step2Title: "Proposal & Alignment",
+    step2Desc: "Clear scope definition, deliverables, roadmap, and investment with no surprises.",
+    step3Title: "Creation & Art Direction",
+    step3Desc: "Full design execution combining high visual standards, usability, and performance.",
+    step4Title: "Approval & Handout",
+    step4Desc: "Refinements, final validation, and organized asset delivery in ready-to-use formats.",
+    contactEyebrow: "Let's Talk?",
+    contactTitle: "Ready to elevate your brand's visual presence?",
+    contactDesc: "Reach out directly via WhatsApp for a quick response or send a message detailing your project.",
+    contactWaBtn: "💬 Start WhatsApp Chat (+55 81 98688-8529)",
+    formName: "Your name",
+    formEmail: "Your email",
+    formMessage: "Tell me about your project",
+    formSubmit: "Send message",
+    footerRole: "Senior Designer & Art Director",
+    waTooltip: "Chat with Ítalo",
+    prevProject: "← Previous project",
+    nextProject: "Next project →",
+    dialogFooterTitle: "Like this style?",
+    dialogFooterDesc: "We can craft an exclusive project with this exact visual level for your brand.",
+    dialogFooterBtn: "Quote on WhatsApp"
+  }
+};
 
-const header = document.querySelector('.site-header');
-const menuToggle = document.querySelector('.menu-toggle');
-const nav = document.querySelector('.main-nav');
-const navLinks = [...document.querySelectorAll('.main-nav a')];
-const projectsGrid = document.getElementById('projectsGrid');
+let currentLang = localStorage.getItem('italo_lang') || 'pt';
 
-const dialog = document.getElementById('projectDialog');
-const dialogClose = dialog.querySelector('.dialog-close');
-const dialogTitle = document.getElementById('dialogTitle');
-const dialogCategory = document.getElementById('dialogCategory');
-const dialogSummary = document.getElementById('dialogSummary');
-const dialogTags = document.getElementById('dialogTags');
-const dialogGallery = document.getElementById('dialogGallery');
-const dialogCounter = document.getElementById('dialogCounter');
-const dialogBehanceLink = document.getElementById('dialogBehanceLink');
-const previousProject = document.getElementById('previousProject');
-const nextProject = document.getElementById('nextProject');
+function updateLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('italo_lang', lang);
 
-let lastFocusedElement = null;
-let currentProjectIndex = 0;
-
-function escapeHtml(value = '') {
-  return String(value)
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#039;');
-}
-
-
-function projectMeta(project) {
-  return [project.category, project.year].filter(Boolean).join(' · ');
-}
-
-function normalizedMedia(project) {
-  if (Array.isArray(project.media) && project.media.length) return project.media;
-  return (project.images || []).map(src => ({ type: 'image', src }));
-}
-
-function renderProjectMedia(project) {
-  return normalizedMedia(project).map((item, mediaIndex) => {
-    if (item.type === 'video') {
-      const poster = item.poster ? ` poster="${escapeHtml(item.poster)}"` : '';
-      const title = escapeHtml(item.title || `${project.title} — vídeo ${mediaIndex + 1}`);
-      return `
-        <figure class="dialog-media dialog-video ${mediaIndex === 0 ? 'dialog-media-lead' : ''}">
-          <video controls playsinline preload="metadata"${poster} aria-label="${title}">
-            <source src="${escapeHtml(item.src)}" type="video/mp4">
-            Seu navegador não suporta vídeo HTML5.
-          </video>
-        </figure>
-      `;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (translations[lang] && translations[lang][key]) {
+      el.textContent = translations[lang][key];
     }
+  });
 
-    return `
-      <figure class="dialog-media dialog-image ${mediaIndex === 0 ? 'dialog-media-lead' : ''}">
-        <img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.alt || `${project.title} — visual ${mediaIndex + 1}`)}" loading="${mediaIndex === 0 ? 'eager' : 'lazy'}">
-      </figure>
-    `;
-  }).join('');
+  document.getElementById('langPT').classList.toggle('active', lang === 'pt');
+  document.getElementById('langEN').classList.toggle('active', lang === 'en');
 }
+
+document.getElementById('langPT').addEventListener('click', () => updateLanguage('pt'));
+document.getElementById('langEN').addEventListener('click', () => updateLanguage('en'));
+
+// FILTRO DE CATEGORIAS DO PORTFÓLIO
+const projects = Array.isArray(window.PORTFOLIO_PROJECTS) ? window.PORTFOLIO_PROJECTS : [];
+const projectsGrid = document.getElementById('projectsGrid');
+const tabButtons = document.querySelectorAll('.tab-btn');
+
+let activeCategory = 'all';
 
 function renderProjects() {
   if (!projectsGrid) return;
 
-  if (!featuredProjects.length) {
-    projectsGrid.innerHTML = '<p class="empty-projects">Nenhum projeto publicado ainda.</p>';
+  const filtered = activeCategory === 'all' 
+    ? projects 
+    : projects.filter(p => p.category === activeCategory);
+
+  if (!filtered.length) {
+    projectsGrid.innerHTML = '<p class="empty-projects" style="grid-column: 1/-1; text-align: center; color: #888; padding: 40px;">Nenhum projeto encontrado nesta categoria no momento.</p>';
     return;
   }
 
-  projectsGrid.innerHTML = featuredProjects.map((project, index) => `
-    <button class="project-card reveal ${index === 0 ? 'project-card-featured' : ''}" type="button" data-project="${escapeHtml(project.id)}" aria-label="Abrir projeto ${escapeHtml(project.title)}">
+  projectsGrid.innerHTML = filtered.map(p => `
+    <button class="project-card reveal" type="button" data-project="${p.id}" aria-label="Abrir projeto ${p.title}">
       <span class="project-media">
-        <img src="${escapeHtml(project.cover)}" alt="Capa do projeto ${escapeHtml(project.title)}" loading="${index < 2 ? 'eager' : 'lazy'}">
-        <span class="project-overlay" aria-hidden="true"><span>${project.media?.some(item => item.type === 'video') ? 'Assistir projeto' : 'Ver projeto'}</span><strong>↗</strong></span>
+        <img src="${p.cover}" alt="${p.title}" loading="lazy">
       </span>
       <span class="project-footer">
         <span class="project-copy">
-          <small>${escapeHtml(projectMeta(project))}</small>
-          <strong>${escapeHtml(project.title)}</strong>
+          <small>${p.categoryName || p.category}</small>
+          <strong>${p.title}</strong>
         </span>
-        <span class="project-arrow" aria-hidden="true">↗</span>
+        <span class="project-arrow">↗</span>
       </span>
     </button>
   `).join('');
 
   document.querySelectorAll('[data-project]').forEach(card => {
     card.addEventListener('click', () => {
-      const index = featuredProjects.findIndex(project => project.id === card.dataset.project);
-      openProject(index >= 0 ? index : 0, card);
+      const idx = projects.findIndex(item => item.id === card.dataset.project);
+      openProject(idx >= 0 ? idx : 0);
     });
   });
-
-  document.querySelectorAll('.project-card.reveal').forEach(el => revealObserver.observe(el));
 }
 
-function setHeaderState() {
-  header.classList.toggle('scrolled', window.scrollY > 18);
-}
-
-setHeaderState();
-window.addEventListener('scroll', setHeaderState, { passive: true });
-
-menuToggle.addEventListener('click', () => {
-  const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-  menuToggle.setAttribute('aria-expanded', String(!expanded));
-  menuToggle.setAttribute('aria-label', expanded ? 'Abrir menu' : 'Fechar menu');
-  nav.classList.toggle('open', !expanded);
+tabButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    tabButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeCategory = btn.dataset.category;
+    renderProjects();
+  });
 });
 
-navLinks.forEach(link => link.addEventListener('click', () => {
-  menuToggle.setAttribute('aria-expanded', 'false');
-  menuToggle.setAttribute('aria-label', 'Abrir menu');
-  nav.classList.remove('open');
-}));
+// DIALOG / MODAL
+const dialog = document.getElementById('projectDialog');
+const dialogClose = dialog.querySelector('.dialog-close');
+let currentProjectIndex = 0;
 
-const sections = [...document.querySelectorAll('main section[id]')];
-const sectionObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`));
-  });
-}, { rootMargin: '-35% 0px -55% 0px', threshold: 0 });
-sections.forEach(section => sectionObserver.observe(section));
+function openProject(index) {
+  currentProjectIndex = index;
+  const project = projects[index];
+  if (!project) return;
 
-const revealObserver = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1 });
+  document.getElementById('dialogTitle').textContent = project.title;
+  document.getElementById('dialogCategory').textContent = project.categoryName || project.category;
+  document.getElementById('dialogSummary').textContent = project.summary || '';
+  document.getElementById('dialogCounter').textContent = `${index + 1} / ${projects.length}`;
+  
+  const gallery = document.getElementById('dialogGallery');
+  gallery.innerHTML = (project.images || []).map(src => `<div class="dialog-image"><img src="${src}" alt="Imagem do projeto"></div>`).join('');
 
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-function pauseDialogMedia() {
-  dialog.querySelectorAll('video, audio').forEach(media => media.pause());
-}
-
-function renderDialogProject(index) {
-  if (!featuredProjects.length) return;
-
-  pauseDialogMedia();
-  currentProjectIndex = (index + featuredProjects.length) % featuredProjects.length;
-  const project = featuredProjects[currentProjectIndex];
-
-  dialogTitle.textContent = project.title;
-  dialogCategory.textContent = project.category;
-  dialogSummary.textContent = project.summary;
-  dialogCounter.textContent = `${String(currentProjectIndex + 1).padStart(2, '0')} / ${String(featuredProjects.length).padStart(2, '0')}`;
-  dialogBehanceLink.href = project.behanceUrl || 'https://www.behance.net/claudiooitalo';
-  dialogBehanceLink.hidden = !project.behanceUrl;
-
-  dialogTags.innerHTML = (project.tags || []).map(tag => `<span>${escapeHtml(tag)}</span>`).join('');
-  dialogGallery.innerHTML = renderProjectMedia(project);
-
-  previousProject.disabled = featuredProjects.length < 2;
-  nextProject.disabled = featuredProjects.length < 2;
-
-  dialog.querySelector('.dialog-shell').scrollTop = 0;
-}
-
-function openProject(index, trigger) {
-  if (!featuredProjects.length) return;
-  lastFocusedElement = trigger || document.activeElement;
-  renderDialogProject(index);
   dialog.showModal();
   document.body.classList.add('dialog-open');
-  dialogClose.focus();
 }
 
-function closeProject() {
-  if (!dialog.open) return;
-  pauseDialogMedia();
+dialogClose.addEventListener('click', () => {
   dialog.close();
   document.body.classList.remove('dialog-open');
-  if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') lastFocusedElement.focus();
-}
-
-previousProject.addEventListener('click', () => renderDialogProject(currentProjectIndex - 1));
-nextProject.addEventListener('click', () => renderDialogProject(currentProjectIndex + 1));
-dialogClose.addEventListener('click', closeProject);
-
-dialog.addEventListener('click', event => {
-  if (event.target === dialog) closeProject();
 });
 
-dialog.addEventListener('cancel', event => {
-  event.preventDefault();
-  closeProject();
-});
-
-dialog.querySelectorAll('[data-close-dialog]').forEach(link => link.addEventListener('click', closeProject));
-
-document.addEventListener('keydown', event => {
-  if (!dialog.open) return;
-  if (event.key === 'ArrowLeft') renderDialogProject(currentProjectIndex - 1);
-  if (event.key === 'ArrowRight') renderDialogProject(currentProjectIndex + 1);
-});
-
+// FORMULÁRIO DE CONTATO VIA FORMSUBMIT
 const contactForm = document.getElementById('contactForm');
 const formStatus = document.getElementById('formStatus');
-const contactEmail = 'italochagas.design@gmail.com';
 
 contactForm.addEventListener('submit', async event => {
   event.preventDefault();
-  if (!contactForm.reportValidity()) return;
+  formStatus.textContent = 'Enviando mensagem...';
 
-  const honeypot = contactForm.querySelector('[name="company_website"]');
-  if (honeypot && honeypot.value.trim()) return;
-
-  const submitButton = contactForm.querySelector('button[type="submit"]');
   const formData = new FormData(contactForm);
-  formData.delete('company_website');
-  formData.set('_subject', 'Novo pedido de orçamento — site Ítalo Chagas');
-  formData.set('_template', 'table');
-  formData.set('_captcha', 'false');
-
-  submitButton.disabled = true;
-  submitButton.setAttribute('aria-busy', 'true');
-  formStatus.textContent = 'Enviando...';
+  formData.set('_subject', 'Novo orçamento via site — Ítalo Chagas');
 
   try {
-    const response = await fetch(`https://formsubmit.co/ajax/${contactEmail}`, {
+    const response = await fetch('https://formsubmit.co/ajax/italochagas.design@gmail.com', {
       method: 'POST',
-      headers: { Accept: 'application/json' },
       body: formData
     });
-
-    if (!response.ok) throw new Error('Falha no envio');
-
-    contactForm.reset();
-    formStatus.textContent = 'Mensagem enviada. Em breve entro em contato.';
-  } catch (error) {
-    formStatus.innerHTML = `Não consegui enviar agora. Você pode escrever para <a href="mailto:${contactEmail}">${contactEmail}</a>.`;
-  } finally {
-    submitButton.disabled = false;
-    submitButton.removeAttribute('aria-busy');
+    if (response.ok) {
+      formStatus.textContent = 'Mensagem enviada com sucesso! Entrarei em contato em breve.';
+      contactForm.reset();
+    } else {
+      throw new Error();
+    }
+  } catch (err) {
+    formStatus.textContent = 'Erro ao enviar. Por favor, envie diretamente pelo WhatsApp!';
   }
 });
 
+// REVEAL OBSERVER
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
 document.getElementById('currentYear').textContent = new Date().getFullYear();
+updateLanguage(currentLang);
 renderProjects();
