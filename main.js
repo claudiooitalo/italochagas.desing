@@ -170,6 +170,36 @@ function updateLanguage(lang) {
   if (btnEN) btnEN.classList.toggle('active', lang === 'en');
 }
 
+const langPT = document.getElementById('langPT');
+const langEN = document.getElementById('langEN');
+if (langPT) langPT.addEventListener('click', () => updateLanguage('pt'));
+if (langEN) langEN.addEventListener('click', () => updateLanguage('en'));
+
+const header = document.querySelector('.site-header');
+const menuToggle = document.querySelector('.menu-toggle');
+const nav = document.querySelector('.main-nav');
+
+if (header) {
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 18);
+  }, { passive: true });
+}
+
+if (menuToggle && nav) {
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+    menuToggle.setAttribute('aria-expanded', String(!expanded));
+    nav.classList.toggle('open', !expanded);
+  });
+
+  nav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menuToggle.setAttribute('aria-expanded', 'false');
+      nav.classList.remove('open');
+    });
+  });
+}
+
 function getProjectsList() {
   return Array.isArray(window.PORTFOLIO_PROJECTS) ? window.PORTFOLIO_PROJECTS : [];
 }
@@ -245,55 +275,23 @@ function openProject(index) {
   
   gallery.innerHTML = (project.media || []).map(item => {
     const link = item.src || '';
-    
-    // 1. SE FOR BEHANCE (Incorpora o projeto inteiro)
-    if (link.includes('behance.net')) {
-      // Extrai o ID numérico do projeto (ex: 247452949)
-      const match = link.match(/gallery\/(\d+)/);
-      const projectId = match ? match[1] : '';
 
-      if (projectId) {
-        return `
-          <div class="dialog-media dialog-video" style="display:flex; flex-direction:column; align-items:center; margin-bottom:32px; width:100%;">
-            ${item.title ? `<h4 style="margin: 0 0 12px; font-size:14px; color:var(--lime); text-transform:uppercase; letter-spacing:0.08em; text-align:center;">${item.title}</h4>` : ''}
-            <div style="position:relative; width:100%; height: 75vh; min-height: 500px; border-radius:16px; overflow:hidden; border:1px solid var(--line); background:#111;">
-              <iframe src="https://www.behance.net/embed/project/${projectId}?ilo0=1" allowfullscreen lazyload frameborder="0" allow="clipboard-write" style="width:100%; height:100%; border:0;"></iframe>
-            </div>
-          </div>
-        `;
-      }
-    }
-
-    // 2. SE FOR YOUTUBE
-    if (link.includes('youtube.com') || link.includes('youtu.be')) {
-      let ytId = '';
-      if (link.includes('/shorts/')) ytId = link.split('/shorts/')[1].split('?')[0].replace('/', '');
-      else if (link.includes('v=')) ytId = link.split('v=')[1].split('&')[0];
-      else if (link.includes('youtu.be/')) ytId = link.split('youtu.be/')[1].split('?')[0];
-
+    // RENDERIZAÇÃO DE VÍDEOS DO GITHUB / MP4
+    if (item.type === 'video' || link.includes('raw.githubusercontent.com') || link.endsWith('.mp4')) {
       return `
         <div class="dialog-media dialog-video" style="display:flex; flex-direction:column; align-items:center; margin-bottom:32px; width:100%;">
           ${item.title ? `<h4 style="margin: 0 0 12px; font-size:14px; color:var(--lime); text-transform:uppercase; letter-spacing:0.08em; text-align:center;">${item.title}</h4>` : ''}
-          <div style="position:relative; width:100%; max-width:340px; aspect-ratio:9/16; border-radius:16px; overflow:hidden; border:1px solid var(--line); background:#000;">
-            <iframe src="https://www.youtube.com/embed/${ytId}" title="${item.title || 'YouTube Video'}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width:100%; height:100%; border:0;"></iframe>
+          <div style="width:100%; max-width:380px; border-radius:16px; overflow:hidden; border:1px solid var(--line); background:#000;">
+            <video controls playsinline preload="metadata" style="width:100%; height:auto; display:block;">
+              <source src="${link}" type="video/mp4">
+              Seu navegador não suporta a reprodução deste vídeo.
+            </video>
           </div>
         </div>
       `;
     }
 
-    // 3. SE FOR FICHEIRO NATIVO .MP4
-    if (item.type === 'video' || link.endsWith('.mp4')) {
-      return `
-        <div class="dialog-media dialog-video" style="margin-bottom:24px;">
-          <video controls playsinline preload="metadata" style="width:100%; max-height: 70vh; border-radius:12px;">
-            <source src="${link}" type="video/mp4">
-            Seu navegador não suporta vídeo.
-          </video>
-        </div>
-      `;
-    }
-
-    // 4. SE FOR IMAGEM (Padrão)
+    // RENDERIZAÇÃO DE IMAGENS
     return `<div class="dialog-image" style="margin-bottom:16px;"><img src="${link}" alt="${item.alt || 'Imagem do projeto'}" loading="lazy"></div>`;
   }).join('');
 
@@ -309,7 +307,10 @@ function openProject(index) {
 function closeProject() {
   if (!dialog || !dialog.open) return;
   const gallery = document.getElementById('dialogGallery');
-  if (gallery) gallery.innerHTML = '';
+  if (gallery) {
+    gallery.querySelectorAll('video').forEach(v => v.pause());
+    gallery.innerHTML = '';
+  }
   dialog.close();
   document.body.classList.remove('dialog-open');
 }
@@ -333,6 +334,45 @@ document.addEventListener('keydown', event => {
   if (event.key === 'ArrowLeft') openProject(currentProjectIndex - 1);
   if (event.key === 'ArrowRight') openProject(currentProjectIndex + 1);
 });
+
+const contactForm = document.getElementById('contactForm');
+const formStatus = document.getElementById('formStatus');
+
+if (contactForm) {
+  contactForm.addEventListener('submit', async event => {
+    event.preventDefault();
+    if (formStatus) formStatus.textContent = 'Enviando mensagem...';
+
+    const formData = new FormData(contactForm);
+    formData.set('_subject', 'Novo orçamento via site — Ítalo Chagas');
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/italochagas.design@gmail.com', {
+        method: 'POST',
+        body: formData
+      });
+      if (response.ok) {
+        if (formStatus) formStatus.textContent = 'Mensagem enviada com sucesso! Entrarei em contato em breve.';
+        contactForm.reset();
+      } else {
+        throw new Error();
+      }
+    } catch (err) {
+      if (formStatus) formStatus.textContent = 'Erro ao enviar. Por favor, envie diretamente pelo WhatsApp!';
+    }
+  });
+}
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 const currentYearEl = document.getElementById('currentYear');
 if (currentYearEl) currentYearEl.textContent = new Date().getFullYear();
