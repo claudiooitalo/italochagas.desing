@@ -245,19 +245,31 @@ function openProject(index) {
   
   gallery.innerHTML = (project.media || []).map(item => {
     const link = item.src || '';
-    // Verifica se existe "youtube" ou "youtu.be" no link
-    const isYouTube = link.includes('youtube.com') || link.includes('youtu.be');
+    
+    // 1. SE FOR BEHANCE (Incorpora o projeto inteiro)
+    if (link.includes('behance.net')) {
+      // Extrai o ID numérico do projeto (ex: 247452949)
+      const match = link.match(/gallery\/(\d+)/);
+      const projectId = match ? match[1] : '';
 
-    // 1. SE FOR YOUTUBE (Garante o iframe)
-    if (isYouTube) {
-      let ytId = '';
-      if (link.includes('/shorts/')) {
-        ytId = link.split('/shorts/')[1].split('?')[0].replace('/', '');
-      } else if (link.includes('v=')) {
-        ytId = link.split('v=')[1].split('&')[0];
-      } else if (link.includes('youtu.be/')) {
-        ytId = link.split('youtu.be/')[1].split('?')[0];
+      if (projectId) {
+        return `
+          <div class="dialog-media dialog-video" style="display:flex; flex-direction:column; align-items:center; margin-bottom:32px; width:100%;">
+            ${item.title ? `<h4 style="margin: 0 0 12px; font-size:14px; color:var(--lime); text-transform:uppercase; letter-spacing:0.08em; text-align:center;">${item.title}</h4>` : ''}
+            <div style="position:relative; width:100%; height: 75vh; min-height: 500px; border-radius:16px; overflow:hidden; border:1px solid var(--line); background:#111;">
+              <iframe src="https://www.behance.net/embed/project/${projectId}?ilo0=1" allowfullscreen lazyload frameborder="0" allow="clipboard-write" style="width:100%; height:100%; border:0;"></iframe>
+            </div>
+          </div>
+        `;
       }
+    }
+
+    // 2. SE FOR YOUTUBE
+    if (link.includes('youtube.com') || link.includes('youtu.be')) {
+      let ytId = '';
+      if (link.includes('/shorts/')) ytId = link.split('/shorts/')[1].split('?')[0].replace('/', '');
+      else if (link.includes('v=')) ytId = link.split('v=')[1].split('&')[0];
+      else if (link.includes('youtu.be/')) ytId = link.split('youtu.be/')[1].split('?')[0];
 
       return `
         <div class="dialog-media dialog-video" style="display:flex; flex-direction:column; align-items:center; margin-bottom:32px; width:100%;">
@@ -269,7 +281,7 @@ function openProject(index) {
       `;
     }
 
-    // 2. SE FOR UM FICHEIRO DE VÍDEO NATIVO (.mp4)
+    // 3. SE FOR FICHEIRO NATIVO .MP4
     if (item.type === 'video' || link.endsWith('.mp4')) {
       return `
         <div class="dialog-media dialog-video" style="margin-bottom:24px;">
@@ -281,7 +293,7 @@ function openProject(index) {
       `;
     }
 
-    // 3. SE FOR IMAGEM
+    // 4. SE FOR IMAGEM (Padrão)
     return `<div class="dialog-image" style="margin-bottom:16px;"><img src="${link}" alt="${item.alt || 'Imagem do projeto'}" loading="lazy"></div>`;
   }).join('');
 
