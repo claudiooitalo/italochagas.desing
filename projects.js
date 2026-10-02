@@ -8,8 +8,8 @@ window.PORTFOLIO_PROJECTS = [
     summary: "Layout de alta conversão focado na apresentação de marcas e aplicações institucionais.",
     cover: "https://lh3.googleusercontent.com/d/1KiNsjyPv1b5TTXIBde-rUuLRXmQRSAJU",
     media: [
-      { type: "image", src: "https://lh3.googleusercontent.com/d/1KiNsjyPv1b5TTXIBde-rUuLRXmQRSAJU", alt: "LP MEP" },
       { type: "image", src: "https://lh3.googleusercontent.com/d/14jchCVnJHwhyTWv8A9TZXi_b5k7fYdCV", alt: "Marcas e Detalhes" },
+      { type: "image", src: "https://lh3.googleusercontent.com/d/1KiNsjyPv1b5TTXIBde-rUuLRXmQRSAJU", alt: "LP MEP" },
       { type: "image", src: "https://lh3.googleusercontent.com/d/1d2F6dzVo8VydTElkEuo84SdgU7R0q8eq", alt: "Aplicações de Marca" }
     ]
   },
