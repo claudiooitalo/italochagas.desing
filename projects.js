@@ -4,7 +4,7 @@ window.PORTFOLIO_PROJECTS = [
     id: "lp-mep",
     category: "landing-pages",
     categoryName: "🌐 Landing Pages",
-    title: "Landing Page MEP & Aplicações",
+    title: "Landing Pages",
     summary: "Layout de alta conversão focado na apresentação de marcas e aplicações institucionais.",
     cover: "https://lh3.googleusercontent.com/d/1KiNsjyPv1b5TTXIBde-rUuLRXmQRSAJU",
     media: [
@@ -19,7 +19,7 @@ window.PORTFOLIO_PROJECTS = [
     id: "branding-salgados-tasty",
     category: "branding",
     categoryName: "🎨 Marcas / Branding",
-    title: "Identidade Visual — Salgados Tasty",
+    title: "Identidades Visuais & Branding",
     summary: "Manual de identidade visual completo, guias de aplicação e apresentação estratégica de marca.",
     cover: "https://lh3.googleusercontent.com/d/1TcW23wqmdBjXvCNSYujjWlwUgH3SMjBF",
     media: [
@@ -36,7 +36,7 @@ window.PORTFOLIO_PROJECTS = [
     id: "motion-campaigns",
     category: "motion",
     categoryName: "🎬 Motion Design",
-    title: "Animações & Criativos Publicitários",
+    title: "Motion Design",
     summary: "Animações dinâmicas em formato 9:16 e vídeos curtos focados em alta retenção para redes e campanhas.",
     cover: "https://lh3.googleusercontent.com/d/1KiNsjyPv1b5TTXIBde-rUuLRXmQRSAJU",
     media: [
@@ -51,7 +51,7 @@ window.PORTFOLIO_PROJECTS = [
     id: "social-media-posts",
     category: "social-media",
     categoryName: "📱 Social Media",
-    title: "Design de Criativos & Redes Sociais",
+    title: "Social Media",
     summary: "Peças publicitárias de alto impacto no formato 1080x1350 para engajamento e conversão.",
     cover: "https://lh3.googleusercontent.com/d/1sUheeXH-KsH6T54tE9B6bZVZle9x7IXF",
     media: [
