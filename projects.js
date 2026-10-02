@@ -31,7 +31,7 @@ window.PORTFOLIO_PROJECTS = [
     ]
   },
 
-  // 3. MOTION DESIGN
+  // 3. MOTION DESIGN (COM OS VÍDEOS HOSPEDADOS NO GITHUB)
   {
     id: "motion-campaigns",
     category: "motion",
@@ -40,10 +40,16 @@ window.PORTFOLIO_PROJECTS = [
     summary: "Animações dinâmicas em formato 9:16 e vídeos curtos focados em alta retenção para redes e campanhas.",
     cover: "https://lh3.googleusercontent.com/d/1KiNsjyPv1b5TTXIBde-rUuLRXmQRSAJU",
     media: [
-      { type: "video", src: "https://youtube.com/shorts/fOtrrTIJ6Y0?feature=share", title: "SOCIAL MEDIA - AJUDE O TOURO" },
-      { type: "video", src: "https://youtube.com/shorts/UZ9ABkAuZ-Y?feature=share", title: "MOTION - SPORT RECIFE COPA DO BRASIL" },
-      { type: "video", src: "https://youtube.com/shorts/OS1GCj0EMnI?feature=share", title: "VÍDEO PARA AQUISIÇÃO - LE BANDIT" },
-      { type: "video", src: "https://youtube.com/shorts/ad4fp6ljp5c?feature=share", title: "MOTION SHOW DE ANIVERSÁRIO" }
+      { 
+        type: "video", 
+        src: "https://raw.githubusercontent.com/SEU-UTILIZADOR/SEU-REPO/main/caminho-do-video/sport-vs-csp.mp4", 
+        title: "SPORT RECIFE - COPA DO BRASIL" 
+      },
+      { 
+        type: "video", 
+        src: "https://raw.githubusercontent.com/SEU-UTILIZADOR/SEU-REPO/main/caminho-do-video/AJUDE-O-TIGRE-2(1).mp4", 
+        title: "AJUDE O TOURO" 
+      }
     ]
   },
 
