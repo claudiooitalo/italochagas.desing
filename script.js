@@ -200,15 +200,18 @@ if (menuToggle && nav) {
   });
 }
 
-const projects = Array.isArray(window.PORTFOLIO_PROJECTS) ? window.PORTFOLIO_PROJECTS : [];
+function getProjectsList() {
+  return Array.isArray(window.PORTFOLIO_PROJECTS) ? window.PORTFOLIO_PROJECTS : [];
+}
+
 const projectsGrid = document.getElementById('projectsGrid');
 const tabButtons = document.querySelectorAll('.tab-btn');
-
 let activeCategory = 'all';
 
 function renderProjects() {
   if (!projectsGrid) return;
 
+  const projects = getProjectsList();
   const filtered = activeCategory === 'all' 
     ? projects 
     : projects.filter(p => p.category === activeCategory);
@@ -219,7 +222,7 @@ function renderProjects() {
   }
 
   projectsGrid.innerHTML = filtered.map(p => `
-    <button class="project-card reveal" type="button" data-project="${p.id}" aria-label="Abrir projeto ${p.title}">
+    <button class="project-card reveal visible" type="button" data-project="${p.id}" aria-label="Abrir projeto ${p.title}">
       <span class="project-media">
         <img src="${p.cover}" alt="${p.title}" loading="lazy">
       </span>
@@ -256,14 +259,16 @@ const previousProject = document.getElementById('previousProject');
 const nextProject = document.getElementById('nextProject');
 let currentProjectIndex = 0;
 
-function pauseMedia() {
-  if (!dialog) return;
-  dialog.querySelectorAll('video, audio').forEach(media => media.pause());
+function getYouTubeEmbedUrl(url) {
+  if (!url) return null;
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|shorts\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+  const match = url.match(regExp);
+  return (match && match[2].length === 11) ? `https://www.youtube.com/embed/${match[2]}` : null;
 }
 
 function openProject(index) {
+  const projects = getProjectsList();
   if (!dialog || !projects.length) return;
-  pauseMedia();
 
   currentProjectIndex = (index + projects.length) % projects.length;
   const project = projects[currentProjectIndex];
@@ -276,8 +281,19 @@ function openProject(index) {
   const gallery = document.getElementById('dialogGallery');
   gallery.innerHTML = (project.media || []).map(item => {
     if (item.type === 'video') {
+      const ytEmbed = getYouTubeEmbedUrl(item.src);
+      if (ytEmbed) {
+        return `
+          <div class="dialog-media dialog-video" style="display:flex; flex-direction:column; align-items:center; margin-bottom:32px;">
+            <h4 style="margin: 0 0 12px; font-size:14px; color:var(--lime); text-transform:uppercase; letter-spacing:0.08em; text-align:center;">${item.title || ''}</h4>
+            <div style="position:relative; width:100%; max-width:340px; aspect-ratio:9/16; border-radius:16px; overflow:hidden; border:1px solid var(--line); background:#000;">
+              <iframe src="${ytEmbed}" title="${item.title || 'Vídeo'}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="width:100%; height:100%;"></iframe>
+            </div>
+          </div>
+        `;
+      }
       return `
-        <div class="dialog-media dialog-video">
+        <div class="dialog-media dialog-video" style="margin-bottom:24px;">
           <video controls playsinline preload="metadata" style="width:100%; max-height: 70vh; border-radius:12px;">
             <source src="${item.src}" type="video/mp4">
             Seu navegador não suporta vídeo.
@@ -285,7 +301,7 @@ function openProject(index) {
         </div>
       `;
     }
-    return `<div class="dialog-image"><img src="${item.src}" alt="${item.alt || 'Imagem do projeto'}" loading="lazy"></div>`;
+    return `<div class="dialog-image" style="margin-bottom:16px;"><img src="${item.src}" alt="${item.alt || 'Imagem do projeto'}" loading="lazy"></div>`;
   }).join('');
 
   if (!dialog.open) {
@@ -299,7 +315,8 @@ function openProject(index) {
 
 function closeProject() {
   if (!dialog || !dialog.open) return;
-  pauseMedia();
+  const gallery = document.getElementById('dialogGallery');
+  if (gallery) gallery.innerHTML = ''; // Limpa os iframes para interromper o áudio ao fechar
   dialog.close();
   document.body.classList.remove('dialog-open');
 }
@@ -365,6 +382,11 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 const currentYearEl = document.getElementById('currentYear');
 if (currentYearEl) currentYearEl.textContent = new Date().getFullYear();
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateLanguage(currentLang);
+  renderProjects();
+});
 
 updateLanguage(currentLang);
 renderProjects();
