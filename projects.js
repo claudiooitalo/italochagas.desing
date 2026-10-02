@@ -42,7 +42,7 @@ window.PORTFOLIO_PROJECTS = [
     media: [
       { type: "video", src: "https://youtube.com/shorts/fOtrrTIJ6Y0?feature=share", title: "SOCIAL MEDIA - AJUDE O TOURO" },
       { type: "video", src: "https://youtube.com/shorts/UZ9ABkAuZ-Y?feature=share", title: "MOTION - SPORT RECIFE COPA DO BRASIL" },
-      { type: "video", src: "https://youtube.com/shorts/OS1GCj0EMnI?feature=share", title: "VÍDEO PARA AQUISIÇÃO - LE BANDIT" }
+      { type: "video", src: "https://youtube.com/shorts/OS1GCj0EMnI?feature=share", title: "VÍDEO PARA AQUISIÇÃO - LE BANDIT" },
       { type: "video", src: "https://youtube.com/shorts/ad4fp6ljp5c?feature=share", title: "MOTION SHOW DE ANIVERSÁRIO" }
     ]
   },
