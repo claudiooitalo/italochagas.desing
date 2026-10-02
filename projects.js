@@ -32,21 +32,20 @@ window.PORTFOLIO_PROJECTS = [
   },
 
   // 3. MOTION DESIGN
- {
-    id: 'motion-igamin',
-    title: 'Motion Igamin',
-    category: 'motion',
-    categoryName: 'Motion Design',
-    cover: 'caminho/para/sua/imagem-de-capa.jpg', // Coloque a imagem de capa aqui
-    summary: 'Projeto de Motion Design para Igamin.',
+  {
+    id: "motion-campaigns",
+    category: "motion",
+    categoryName: "🎬 Motion Design",
+    title: "Motion Design",
+    summary: "Animações dinâmicas em formato 9:16 e vídeos curtos focados em alta retenção para redes e campanhas.",
+    cover: "https://lh3.googleusercontent.com/d/1KiNsjyPv1b5TTXIBde-rUuLRXmQRSAJU",
     media: [
-      {
-        src: 'https://www.behance.net/gallery/247452949/Motion-Igamin', // Seu link do Behance
-        title: 'Ver Projeto Completo'
-      }
+      { type: "video", src: "https://youtube.com/shorts/fOtrrTIJ6Y0?feature=share", title: "SOCIAL MEDIA - AJUDE O TOURO" },
+      { type: "video", src: "https://youtube.com/shorts/UZ9ABkAuZ-Y?feature=share", title: "MOTION - SPORT RECIFE COPA DO BRASIL" },
+      { type: "video", src: "https://youtube.com/shorts/OS1GCj0EMnI?feature=share", title: "VÍDEO PARA AQUISIÇÃO - LE BANDIT" },
+      { type: "video", src: "https://youtube.com/shorts/ad4fp6ljp5c?feature=share", title: "MOTION SHOW DE ANIVERSÁRIO" }
     ]
-  }
-];
+  },
 
   // 4. SOCIAL MEDIA
   {
