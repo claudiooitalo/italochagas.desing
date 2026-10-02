@@ -1,64 +1,351 @@
-window.PORTFOLIO_PROJECTS = [
-  // 1. LANDING PAGES
-  {
-    id: "lp-mep",
-    category: "landing-pages",
-    categoryName: "🌐 Landing Pages",
-    title: "Landing Pages",
-    summary: "Layout de alta conversão focado na apresentação de marcas e aplicações institucionais.",
-    cover: "https://lh3.googleusercontent.com/d/1KiNsjyPv1b5TTXIBde-rUuLRXmQRSAJU",
-    media: [
-      { type: "image", src: "https://lh3.googleusercontent.com/d/1KiNsjyPv1b5TTXIBde-rUuLRXmQRSAJU", alt: "LP MEP" },
-      { type: "image", src: "https://lh3.googleusercontent.com/d/14jchCVnJHwhyTWv8A9TZXi_b5k7fYdCV", alt: "Marcas e Detalhes" },
-      { type: "image", src: "https://lh3.googleusercontent.com/d/1d2F6dzVo8VydTElkEuo84SdgU7R0q8eq", alt: "Aplicações de Marca" }
-    ]
-  },
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090909">
+  <meta name="description" content="Portfólio de Ítalo Chagas — Designer Sênior e Diretor de Arte. Landing Pages, Identidade Visual, Motion Design e Social Media estratégico.">
+  <meta property="og:title" content="Ítalo Chagas — Designer Sênior & Diretor de Arte">
+  <meta property="og:description" content="Design estratégico, Landing Pages de alta conversão, Branding, Motion e Comunicação Visual.">
+  <meta property="og:type" content="website">
+  <title>Ítalo Chagas — Designer Sênior & Diretor de Arte</title>
 
-  // 2. BRANDING E IDENTIDADE VISUAL
-  {
-    id: "branding-salgados-tasty",
-    category: "branding",
-    categoryName: "🎨 Marcas / Branding",
-    title: "Branding e Identidade Visual",
-    summary: "Manual de identidade visual completo, guias de aplicação e apresentação estratégica de marca.",
-    cover: "https://lh3.googleusercontent.com/d/1TcW23wqmdBjXvCNSYujjWlwUgH3SMjBF",
-    media: [
-      { type: "image", src: "https://lh3.googleusercontent.com/d/1TcW23wqmdBjXvCNSYujjWlwUgH3SMjBF", alt: "Apresentação Identidade Visual" },
-      { type: "image", src: "https://lh3.googleusercontent.com/d/1P0H10JZ-fGxCNgDQxItll-gccwYBizrb", alt: "Manual Salgados Tasty - 06" },
-      { type: "image", src: "https://lh3.googleusercontent.com/d/1VC62TCGxnzHZX_8p3kQUqaYoL42DhcGj", alt: "Manual Salgados Tasty - 07" },
-      { type: "image", src: "https://lh3.googleusercontent.com/d/1gSWmPuxn3UMIuXhb1gPZvvZT4fcOgF1G", alt: "Manual Salgados Tasty - 08" },
-      { type: "image", src: "https://lh3.googleusercontent.com/d/1M7Oz4B16UMCkbDzisoFvp9Mz36hKumws", alt: "Manual Salgados Tasty - 15" }
-    ]
-  },
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,700;1,300;1,700;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 
-  // 3. MOTION DESIGN
+  <script type="application/ld+json">
   {
-    id: "motion-campaigns",
-    category: "motion",
-    categoryName: "🎬 Motion Design",
-    title: "Motion Design",
-    summary: "Animações dinâmicas em formato 9:16 e vídeos curtos focados em alta retenção para redes e campanhas.",
-    cover: "https://lh3.googleusercontent.com/d/1KiNsjyPv1b5TTXIBde-rUuLRXmQRSAJU",
-    media: [
-      { type: "video", src: "https://drive.google.com/uc?export=download&id=1B4oqJKXHj2CeE6rVlnGshmX-p9nGGqnv", title: "Ajude o Tigre" },
-      { type: "video", src: "https://drive.google.com/uc?export=download&id=1jIDTr_5MTHHlRnYz4GQd2soKN9jKsYMc", title: "TikTok Zombie School" },
-      { type: "video", src: "https://drive.google.com/uc?export=download&id=1nFENPi94oTguo4k_OJ9YmlPmcTVv5CbQ", title: "Le Bandit" }
-    ]
-  },
-
-  // 4. SOCIAL MEDIA
-  {
-    id: "social-media-posts",
-    category: "social-media",
-    categoryName: "📱 Social Media",
-    title: "Social Media",
-    summary: "Peças publicitárias de alto impacto no formato 1080x1350 para engajamento e conversão.",
-    cover: "https://lh3.googleusercontent.com/d/1sUheeXH-KsH6T54tE9B6bZVZle9x7IXF",
-    media: [
-      { type: "image", src: "https://lh3.googleusercontent.com/d/1sUheeXH-KsH6T54tE9B6bZVZle9x7IXF", alt: "Play na Diversão" },
-      { type: "image", src: "https://lh3.googleusercontent.com/d/1VkTdkpAbQhGvTRrhWUZJ9e0odU29PBus", alt: "Criativo Social Media" },
-      { type: "image", src: "https://lh3.googleusercontent.com/d/1Gjt-Kv08numSvqC0NwHgebDx6GY0VmmU", alt: "Clássicos" },
-      { type: "image", src: "https://lh3.googleusercontent.com/d/1kMmVyGyCp-FDQpIf5CiNZEpkjjtRkIs4", alt: "Crítica" }
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Ítalo Chagas",
+    "jobTitle": "Designer Sênior e Diretor de Arte",
+    "url": "https://www.behance.net/claudiooitalo",
+    "sameAs": [
+      "https://www.behance.net/claudiooitalo",
+      "https://www.instagram.com/italoochagas/"
     ]
   }
-];
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo" data-i18n="skipLink">Pular para o conteúdo</a>
+
+  <header class="site-header" id="topo">
+    <div class="header-inner container">
+      <a class="brand" href="#inicio" aria-label="Ítalo Chagas — início">
+        <img src="https://lh3.googleusercontent.com/d/17FnsMfrkH-tdT-tPH2L54jXvpjOmpzj3" width="173" height="31" alt="Ítalo Chagas">
+      </a>
+
+      <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="main-nav">
+        <span></span><span></span>
+      </button>
+
+      <nav class="main-nav" id="main-nav" aria-label="Navegação principal">
+        <a href="#inicio" data-i18n="navHome">Início</a>
+        <a href="#trabalhos" data-i18n="navPortfolio">Portfólio</a>
+        <a href="#sobre" data-i18n="navAbout">Sobre</a>
+        <a href="#servicos" data-i18n="navServices">Serviços</a>
+        <a href="#processo" data-i18n="navProcess">Processo</a>
+        <a href="#contato" data-i18n="navContact">Contato</a>
+      </nav>
+
+      <div class="header-right-actions">
+        <div class="lang-switch" aria-label="Seleção de idioma">
+          <button type="button" id="langPT" class="lang-btn active" data-lang="pt">PT</button>
+          <span class="lang-divider">|</span>
+          <button type="button" id="langEN" class="lang-btn" data-lang="en">EN</button>
+        </div>
+
+        <a class="btn btn-primary header-cta" href="https://wa.me/5581986888529?text=Ol%C3%A1%20%C3%8Dtalo%2C%20vim%20pelo%20seu%20site%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento!" target="_blank" rel="noopener noreferrer" data-i18n="headerCta">
+          Quero um orçamento
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero section-dark" id="inicio" aria-labelledby="hero-title">
+      <div class="hero-orb hero-orb-a" aria-hidden="true"></div>
+      <div class="hero-orb hero-orb-b" aria-hidden="true"></div>
+
+      <div class="floating-design-icon icon-cursor" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3l7 18 3-7 7-3L3 3z"/></svg>
+      </div>
+      <div class="floating-design-icon icon-pen" aria-hidden="true">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 12l-8-8-6 6 8 8 6-6z"/><path d="M3 21l3-3"/></svg>
+      </div>
+      <div class="floating-design-icon icon-palette" aria-hidden="true">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="8" cy="10" r="1.5" fill="currentColor"/><circle cx="12" cy="7.5" r="1.5" fill="currentColor"/><circle cx="16" cy="10" r="1.5" fill="currentColor"/><circle cx="15.5" cy="14.5" r="1.5" fill="currentColor"/></svg>
+      </div>
+      <div class="floating-design-icon icon-layers" aria-hidden="true">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+      </div>
+
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <span class="eyebrow" data-i18n="heroEyebrow">Designer Sênior • Direção de Arte</span>
+          <h1 id="hero-title" data-i18n="heroTitle">Design estratégico que transforma atenção em faturamento.</h1>
+          <p class="hero-lead" data-i18n="heroLead">Você não paga apenas por uma arte bonita, paga pela atenção e pelo resultado que ela gera no seu cliente. Landing Pages, Branding, Motion e Social Media construídos com direção visual de alto nível.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://wa.me/5581986888529?text=Ol%C3%A1%20%C3%8Dtalo%2C%20gostaria%20de%20conversar%20sobre%20um%20projeto!" target="_blank" rel="noopener noreferrer" data-i18n="heroCtaWhatsapp">Falar no WhatsApp ↗</a>
+            <a class="btn btn-ghost" href="#trabalhos" data-i18n="heroCtaPortfolio">Ver projetos</a>
+          </div>
+          <div class="hero-meta" aria-label="Especialidades">
+            <span data-i18n="metaLanding">Landing Pages</span>
+            <span data-i18n="metaBranding">Marcas / Branding</span>
+            <span data-i18n="metaMotion">Motion Design</span>
+            <span data-i18n="metaSocial">Social Media</span>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal" aria-label="Apresentação visual de Ítalo Chagas">
+          <div class="hero-ring hero-ring-one" aria-hidden="true"></div>
+          <div class="hero-ring hero-ring-two" aria-hidden="true"></div>
+          <div class="hero-avatar-shell">
+            <img src="https://lh3.googleusercontent.com/d/1a5SfO9DYX7uEbsTEUKiFkdKjIOPr-r13" width="372" height="372" alt="Ilustração de Ítalo Chagas" fetchpriority="high">
+          </div>
+          <div class="floating-tag tag-one" data-i18n="tagEstrategia">Estratégia + Conversão</div>
+          <div class="floating-tag tag-two" data-i18n="tagExperiencia">6+ anos de experiência</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="portfolio section-dark" id="trabalhos" aria-labelledby="portfolio-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <span class="eyebrow" data-i18n="portfolioEyebrow">Soluções Visuais</span>
+            <h2 id="portfolio-title" data-i18n="portfolioTitle">Portfólio Selecionado</h2>
+            <p data-i18n="portfolioDesc">Explore os trabalhos divididos por especialidade. Clique em qualquer projeto para abrir a apresentação completa em alta resolução.</p>
+          </div>
+          <a class="btn btn-ghost" href="https://www.behance.net/claudiooitalo" target="_blank" rel="noopener noreferrer">Behance ↗</a>
+        </div>
+
+        <div class="portfolio-tabs reveal" role="tablist" aria-label="Categorias do Portfólio">
+          <button class="tab-btn active" type="button" data-category="all" data-i18n="catAll">Todos</button>
+          <button class="tab-btn" type="button" data-category="landing-pages" data-i18n="catLanding">🌐 Landing Pages</button>
+          <button class="tab-btn" type="button" data-category="branding" data-i18n="catBranding">🎨 Marcas / Branding</button>
+          <button class="tab-btn" type="button" data-category="motion" data-i18n="catMotion">🎬 Motion Design</button>
+          <button class="tab-btn" type="button" data-category="social-media" data-i18n="catSocial">📱 Social Media</button>
+        </div>
+
+        <div class="projects-grid" id="projectsGrid" aria-live="polite"></div>
+
+        <noscript>
+          <p class="noscript-note">Ative o JavaScript para visualizar a galeria interativa de projetos.</p>
+        </noscript>
+      </div>
+    </section>
+
+    <section class="brands" aria-labelledby="brands-title">
+      <div class="container brands-inner reveal">
+        <div>
+          <span class="eyebrow eyebrow-dark" data-i18n="brandsEyebrow">Trajetória</span>
+          <h2 id="brands-title" data-i18n="brandsTitle">Marcas e Projetos de Impacto</h2>
+        </div>
+        <div class="brands-list" aria-label="Clientes e marcas">
+          <span>Digiplus Brazil</span>
+          <span>F12.Bet</span>
+          <span>Palpiteco</span>
+          <span>J3 Wear</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="about section-dark" id="sobre" aria-labelledby="about-title">
+      <div class="container about-grid">
+        <div class="about-visual reveal">
+          <div class="portrait-card">
+            <img src="https://lh3.googleusercontent.com/d/1a5SfO9DYX7uEbsTEUKiFkdKjIOPr-r13" width="372" height="372" alt="Ilustração de Ítalo Chagas" loading="lazy">
+          </div>
+          <span class="about-stamp" data-i18n="aboutStamp">Designer Sênior • Diretor de Arte</span>
+        </div>
+
+        <div class="about-copy reveal">
+          <span class="eyebrow" data-i18n="aboutEyebrow">Sobre Ítalo Chagas</span>
+          <h2 id="about-title" data-i18n="aboutTitle">Soluções visuais que unem estética apurada, psicologia e foco em resultados.</h2>
+          <p data-i18n="aboutP1">Com mais de 6 anos de experiência e pós-graduação em Direção de Arte, construí minha trajetória ajudando empresas e marcas a se posicionarem com autoridade no mercado digital.</p>
+          <p data-i18n="aboutP2">Seja criando uma Landing Page de alta conversão, desenvolvendo uma Identidade Visual marcante, animando peças em Motion Design ou estruturando uma linha editorial para Social Media, meu objetivo é claro: transformar visual em faturamento.</p>
+          <div class="about-actions">
+            <a class="btn btn-primary" href="https://drive.google.com/uc?export=download&id=1iZAbPZGsn7M99U9N9DV6rtvnDMvof7U7" target="_blank" rel="noopener noreferrer" data-i18n="downloadCV">Baixar Currículo (PDF)</a>
+            <a class="btn btn-ghost" href="https://wa.me/5581986888529?text=Ol%C3%A1%20%C3%8Dtalo%2C%20vi%20seu%20curr%C3%ADculo%20e%20gostaria%20de%20conversar!" target="_blank" rel="noopener noreferrer" data-i18n="aboutCtaWhatsapp">Falar comigo no Whats ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services section-dark" id="servicos" aria-labelledby="services-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <span class="eyebrow" data-i18n="servicesEyebrow">Especialidades</span>
+            <h2 id="services-title" data-i18n="servicesTitle">Serviços Prestados</h2>
+            <p data-i18n="servicesDesc">O que apresento no portfólio é exatamente o que entrego com excelência técnica e estratégica para o seu negócio.</p>
+          </div>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card reveal">
+            <span>01</span>
+            <h3 data-i18n="serv1Title">Landing Pages de Alta Conversão</h3>
+            <p data-i18n="serv1Desc">Design e estrutura focados em capturar atenção, transmitir confiança imediata e guiar o cliente até a ação de compra ou lead.</p>
+          </article>
+          <article class="service-card reveal">
+            <span>02</span>
+            <h3 data-i18n="serv2Title">Marcas & Identidade Visual</h3>
+            <p data-i18n="serv2Desc">Construção completa de marcas memoráveis, com conceito sólido, guias visuais e aplicação prática para destacar do concorrente.</p>
+          </article>
+          <article class="service-card reveal">
+            <span>03</span>
+            <h3 data-i18n="serv3Title">Motion Design & Vídeos</h3>
+            <p data-i18n="serv3Desc">Animações e edições dinâmicas para anúncios, vinhetas e conteúdos visuais de alto engajamento e retenção nas redes.</p>
+          </article>
+          <article class="service-card reveal">
+            <span>04</span>
+            <h3 data-i18n="serv4Title">Design para Social Media</h3>
+            <p data-i18n="serv4Desc">Padrão visual estratégico, carrosséis de alto valor e criativos publicitários projetados para converter visualizações em clientes.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="process section-dark" id="processo" aria-labelledby="process-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <span class="eyebrow" data-i18n="processEyebrow">Metodologia</span>
+            <h2 id="process-title" data-i18n="processTitle">Como Trabalhamos</h2>
+            <p data-i18n="processDesc">Um fluxo de trabalho ágil, transparente e orientado a prazos rígidos.</p>
+          </div>
+        </div>
+
+        <ol class="process-grid">
+          <li class="process-card reveal">
+            <span>01</span>
+            <h3 data-i18n="step1Title">Briefing Estratégico</h3>
+            <p data-i18n="step1Desc">Entendimento a fundo sobre o seu modelo de negócio, público-alvo, objetivos e concorrentes.</p>
+          </li>
+          <li class="process-card reveal">
+            <span>02</span>
+            <h3 data-i18n="step2Title">Proposta & Alinhamento</h3>
+            <p data-i18n="step2Desc">Definição clara do escopo, entregáveis, cronograma e investimento sem surpresas.</p>
+          </li>
+          <li class="process-card reveal">
+            <span>03</span>
+            <h3 data-i18n="step3Title">Criação & Direção de Arte</h3>
+            <p data-i18n="step3Desc">Desenvolvimento do projeto com foco em estética avançada, usabilidade e conversão.</p>
+          </li>
+          <li class="process-card reveal">
+            <span>04</span>
+            <h3 data-i18n="step4Title">Aprovação & Entrega</h3>
+            <p data-i18n="step4Desc">Refinamento, validação final e envio dos arquivos organizados nos formatos prontos para uso.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="contact section-dark" id="contato" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="contact-card reveal">
+          <div class="contact-copy">
+            <span class="eyebrow eyebrow-dark" data-i18n="contactEyebrow">Vamos Conversar?</span>
+            <h2 id="contact-title" data-i18n="contactTitle">Pronto para elevar o nível visual da sua marca?</h2>
+            <p data-i18n="contactDesc">Entre em contato diretamente pelo WhatsApp para um atendimento rápido ou envie uma mensagem com os detalhes do seu projeto.</p>
+            
+            <div class="contact-direct-actions">
+              <a class="btn btn-dark btn-wa-large" href="https://wa.me/5581986888529?text=Ol%C3%A1%20%C3%8Dtalo%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20o%20meu%20projeto!" target="_blank" rel="noopener noreferrer" data-i18n="contactWaBtn">
+                💬 Iniciar conversa no WhatsApp (81 98688-8529)
+              </a>
+            </div>
+
+            <div class="contact-links">
+              <a href="mailto:italochagas.design@gmail.com">italochagas.design@gmail.com</a>
+              <a href="https://www.behance.net/claudiooitalo" target="_blank" rel="noopener noreferrer">Behance ↗</a>
+              <a href="https://www.instagram.com/italoochagas/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+            </div>
+          </div>
+
+          <form class="contact-form" id="contactForm">
+            <label>
+              <span data-i18n="formName">Seu nome</span>
+              <input name="name" type="text" autocomplete="name" required maxlength="120">
+            </label>
+            <label>
+              <span data-i18n="formEmail">Seu e-mail</span>
+              <input name="email" type="email" autocomplete="email" required maxlength="180">
+            </label>
+            <label>
+              <span data-i18n="formMessage">Conte um pouco sobre o seu projeto</span>
+              <textarea name="message" rows="5" required maxlength="3000"></textarea>
+            </label>
+            <input type="text" name="company_website" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <button class="btn btn-dark" type="submit" data-i18n="formSubmit">Enviar mensagem</button>
+            <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="footer-brand" href="#inicio" aria-label="Voltar ao início">
+        <img src="https://lh3.googleusercontent.com/d/17FnsMfrkH-tdT-tPH2L54jXvpjOmpzj3" width="173" height="31" alt="Ítalo Chagas" loading="lazy">
+      </a>
+      <p data-i18n="footerRole">Designer Sênior & Diretor de Arte</p>
+      <nav aria-label="Redes sociais">
+        <a href="https://wa.me/5581986888529" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a href="https://www.behance.net/claudiooitalo" target="_blank" rel="noopener noreferrer">Behance</a>
+        <a href="https://www.instagram.com/italoochagas/" target="_blank" rel="noopener noreferrer">Instagram</a>
+      </nav>
+    </div>
+    <div class="container footer-bottom">© <span id="currentYear"></span> Ítalo Chagas. Todos os direitos reservados.</div>
+  </footer>
+
+  <a href="https://wa.me/5581986888529?text=Ol%C3%A1%20%C3%8Dtalo%2C%20vim%20pelo%20seu%20site!" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp">
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+    </svg>
+    <span class="whatsapp-tooltip" data-i18n="waTooltip">Falar com Ítalo</span>
+  </a>
+
+  <dialog class="project-dialog" id="projectDialog" aria-labelledby="dialogTitle">
+    <div class="dialog-shell">
+      <button class="dialog-close" type="button" aria-label="Fechar projeto">×</button>
+
+      <div class="dialog-topbar">
+        <span class="dialog-counter" id="dialogCounter"></span>
+        <a class="dialog-behance-link" id="dialogBehanceLink" href="#" target="_blank" rel="noopener noreferrer">Ver no Behance ↗</a>
+      </div>
+
+      <div class="dialog-hero">
+        <span class="eyebrow" id="dialogCategory"></span>
+        <h2 id="dialogTitle"></h2>
+        <p id="dialogSummary"></p>
+        <div class="dialog-tags" id="dialogTags"></div>
+      </div>
+
+      <div class="dialog-gallery" id="dialogGallery"></div>
+
+      <div class="dialog-project-nav" aria-label="Navegação entre projetos">
+        <button class="project-nav-btn" id="previousProject" type="button" data-i18n="prevProject">← Projeto anterior</button>
+        <button class="project-nav-btn" id="nextProject" type="button" data-i18n="nextProject">Próximo projeto →</button>
+      </div>
+
+      <div class="dialog-footer">
+        <div>
+          <span class="eyebrow" data-i18n="dialogFooterTitle">Gostou deste estilo?</span>
+          <p data-i18n="dialogFooterDesc">Podemos criar um projeto exclusivo e com este mesmo nível visual para a sua marca.</p>
+        </div>
+        <a class="btn btn-primary" href="https://wa.me/5581986888529?text=Ol%C3%A1%20%C3%8Dtalo%2C%20gostei%20dos%20seus%20projetos%20e%20quero%20um%20or%C3%A7amento!" target="_blank" rel="noopener noreferrer" data-i18n="dialogFooterBtn">Orçamento no WhatsApp</a>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="projects.js" defer></script>
+  <script src="script.js" defer></script>
+</body>
+</html>
