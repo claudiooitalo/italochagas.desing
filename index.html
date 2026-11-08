@@ -16,6 +16,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,700;1,300;1,700;1,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 
+  <style>
+    /* Estilos adicionados para animações e ajustes mobile solicitados */
+    @keyframes pulseGlow {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
+      70% { transform: scale(1.03); box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+    }
+    .btn-primary {
+      animation: pulseGlow 2.5s infinite;
+    }
+    @keyframes headerSlideDown {
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .site-header {
+      animation: headerSlideDown 0.8s ease-out forwards;
+    }
+  </style>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -50,6 +69,10 @@
         <a href="#servicos" data-i18n="navServices">Serviços</a>
         <a href="#processo" data-i18n="navProcess">Processo</a>
         <a href="#contato" data-i18n="navContact">Contato</a>
+        <!-- Opções adicionais integradas no menu mobile -->
+        <div class="mobile-menu-extras" style="display:none;">
+          <a class="btn btn-primary" href="https://wa.me/5581986888529?text=Ol%C3%A1%20%C3%8Dtalo%2C%20vim%20pelo%20seu%20site%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento!" target="_blank" rel="noopener noreferrer">Quero um orçamento</a>
+        </div>
       </nav>
 
       <div class="header-right-actions">
@@ -144,7 +167,6 @@
     <section class="brands" aria-labelledby="brands-title">
       <div class="container brands-inner reveal">
         <div>
-          <span class="eyebrow eyebrow-dark" data-i18n="brandsEyebrow">Trajetória</span>
           <h2 id="brands-title" data-i18n="brandsTitle">Marcas e Projetos de Impacto</h2>
         </div>
         <div class="brands-list" aria-label="Clientes e marcas">
@@ -167,12 +189,11 @@
         </div>
 
         <div class="about-copy reveal">
-          <span class="eyebrow" data-i18n="aboutEyebrow">Sobre Ítalo Chagas</span>
           <h2 id="about-title" data-i18n="aboutTitle">Soluções visuais que unem estética apurada, psicologia e foco em resultados.</h2>
           <p data-i18n="aboutP1">Com mais de 6 anos de experiência e pós-graduação em Direção de Arte, construí minha trajetória ajudando empresas e marcas a se posicionarem com autoridade no mercado digital.</p>
           <p data-i18n="aboutP2">Seja criando uma Landing Page de alta conversão, desenvolvendo uma Identidade Visual marcante, animando peças em Motion Design ou estruturando uma linha editorial para Social Media, meu objetivo é claro: transformar visual em faturamento.</p>
           <div class="about-actions">
-            <a class="btn btn-primary" href="https://drive.google.com/uc?export=download&id=1iZAbPZGsn7M99U9N9DV6rtvnDMvof7U7" target="_blank" rel="noopener noreferrer" data-i18n="downloadCV">Baixar Currículo (PDF)</a>
+            <a class="btn btn-primary" href="Curriculo_Italo_Chagas_2026.pdf" download="Curriculo_Italo_Chagas_2026.pdf" data-i18n="downloadCV">Baixar Currículo (PDF)</a>
             <a class="btn btn-ghost" href="https://wa.me/5581986888529?text=Ol%C3%A1%20%C3%8Dtalo%2C%20vi%20seu%20curr%C3%ADculo%20e%20gostaria%20de%20conversar!" target="_blank" rel="noopener noreferrer" data-i18n="aboutCtaWhatsapp">Falar comigo no Whats ↗</a>
           </div>
         </div>
@@ -184,7 +205,6 @@
       <div class="container">
         <div class="section-heading reveal">
           <div>
-            <span class="eyebrow" data-i18n="servicesEyebrow">Especialidades</span>
             <h2 id="services-title" data-i18n="servicesTitle">Serviços Prestados</h2>
             <p data-i18n="servicesDesc">O que apresento no portfólio é exatamente o que entrego com excelência técnica e estratégica para o seu negócio.</p>
           </div>
@@ -220,7 +240,6 @@
       <div class="container">
         <div class="section-heading reveal">
           <div>
-            <span class="eyebrow" data-i18n="processEyebrow">Metodologia</span>
             <h2 id="process-title" data-i18n="processTitle">Como Trabalhamos</h2>
             <p data-i18n="processDesc">Um fluxo de trabalho ágil, transparente e orientado a prazos rígidos.</p>
           </div>
@@ -256,7 +275,6 @@
       <div class="container">
         <div class="contact-card reveal">
           <div class="contact-copy">
-            <span class="eyebrow eyebrow-dark" data-i18n="contactEyebrow">Vamos Conversar?</span>
             <h2 id="contact-title" data-i18n="contactTitle">Pronto para elevar o nível visual da sua marca?</h2>
             <p data-i18n="contactDesc">Entre em contato diretamente pelo WhatsApp para um atendimento rápido ou envie uma mensagem com os detalhes do seu projeto.</p>
             
