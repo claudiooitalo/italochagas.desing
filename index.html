@@ -16,25 +16,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,700;1,300;1,700;1,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 
-  <style>
-    /* Estilos adicionados para animações e ajustes mobile solicitados */
-    @keyframes pulseGlow {
-      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
-      70% { transform: scale(1.03); box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
-      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
-    }
-    .btn-primary {
-      animation: pulseGlow 2.5s infinite;
-    }
-    @keyframes headerSlideDown {
-      from { transform: translateY(-100%); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-    .site-header {
-      animation: headerSlideDown 0.8s ease-out forwards;
-    }
-  </style>
-
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -59,7 +40,7 @@
       </a>
 
       <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="main-nav">
-        <span></span><span></span>
+        <span></span><span></span><span></span>
       </button>
 
       <nav class="main-nav" id="main-nav" aria-label="Navegação principal">
@@ -69,10 +50,9 @@
         <a href="#servicos" data-i18n="navServices">Serviços</a>
         <a href="#processo" data-i18n="navProcess">Processo</a>
         <a href="#contato" data-i18n="navContact">Contato</a>
-        <!-- Opções adicionais integradas no menu mobile -->
-        <div class="mobile-menu-extras" style="display:none;">
-          <a class="btn btn-primary" href="https://wa.me/5581986888529?text=Ol%C3%A1%20%C3%8Dtalo%2C%20vim%20pelo%20seu%20site%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento!" target="_blank" rel="noopener noreferrer">Quero um orçamento</a>
-        </div>
+        <a class="btn btn-primary mobile-menu-cta" href="https://wa.me/5581986888529?text=Ol%C3%A1%20%C3%8Dtalo%2C%20vim%20pelo%20seu%20site%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento!" target="_blank" rel="noopener noreferrer">
+          Quero um orçamento
+        </a>
       </nav>
 
       <div class="header-right-actions">
@@ -136,15 +116,19 @@
       </div>
     </section>
 
-    <!-- PORTFOLIO SECTION -->
+    <!-- PORTFOLIO SECTION COM CARROSSEL -->
     <section class="portfolio section-dark" id="trabalhos" aria-labelledby="portfolio-title">
       <div class="container">
         <div class="section-heading reveal">
           <div>
             <h2 id="portfolio-title" data-i18n="portfolioTitle">Portfólio Selecionado</h2>
-            <p data-i18n="portfolioDesc">Explore os trabalhos divididos por especialidade. Clique em qualquer projeto para abrir a apresentação completa em alta resolução.</p>
+            <p data-i18n="portfolioDesc">Explore os trabalhos divididos por especialidade. Arraste para o lado para navegar pelos projetos em formato 1:1.</p>
           </div>
-          <a class="btn btn-ghost" href="https://www.behance.net/claudiooitalo" target="_blank" rel="noopener noreferrer">Behance ↗</a>
+          <div class="portfolio-controls">
+            <button class="carousel-nav-btn prev-btn" id="carouselPrev" type="button" aria-label="Projeto anterior">←</button>
+            <button class="carousel-nav-btn next-btn" id="carouselNext" type="button" aria-label="Próximo projeto">→</button>
+            <a class="btn btn-ghost" href="https://www.behance.net/claudiooitalo" target="_blank" rel="noopener noreferrer">Behance ↗</a>
+          </div>
         </div>
 
         <div class="portfolio-tabs reveal" role="tablist" aria-label="Categorias do Portfólio">
@@ -155,7 +139,8 @@
           <button class="tab-btn" type="button" data-category="social-media" data-i18n="catSocial">📱 Social Media</button>
         </div>
 
-        <div class="projects-grid" id="projectsGrid" aria-live="polite"></div>
+        <!-- CONTEINER DO CARROSSEL 1:1 -->
+        <div class="projects-grid carousel-track" id="projectsGrid" aria-live="polite"></div>
 
         <noscript>
           <p class="noscript-note">Ative o JavaScript para visualizar a galeria interativa de projetos.</p>
@@ -372,5 +357,22 @@
 
   <script src="projects.js" defer></script>
   <script src="main.js" defer></script>
+  <script>
+    // Suporte aos botões de navegação lateral do carrossel no HTML
+    document.addEventListener('DOMContentLoaded', () => {
+      const track = document.getElementById('projectsGrid');
+      const prevBtn = document.getElementById('carouselPrev');
+      const nextBtn = document.getElementById('carouselNext');
+
+      if (track && prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', () => {
+          track.scrollBy({ left: -track.clientWidth * 0.8, behavior: 'smooth' });
+        });
+        nextBtn.addEventListener('click', () => {
+          track.scrollBy({ left: track.clientWidth * 0.8, behavior: 'smooth' });
+        });
+      }
+    });
+  </script>
 </body>
 </html>
